@@ -13,46 +13,34 @@
 	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Figtree'>
 	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="/css/style.css"/>
-	<title>Project Details</title>
+	<title>Display Project</title>
 </head>
 <body>
     <div class="container">
        	<div class="header">
-        	<div>
-	        	<h1 class="mt-4 text-primary"><c:out value="${babyName.name}"></c:out></h1>
-        		<h3 class="text-success added-by">(Added by <c:out value="${babyName.creator.firstName}"></c:out>)</h3>
-        	</div>
-        	<a class="btn btn-outline-info form-btn" href="/home">Back to Dashboard</a>
+        	<h1 class="mt-4 text-primary">Project Details</h1>
+        	<a class="btn btn-outline-info form-btn" href="/projects">Back to Dashboard</a>
         </div>
         <div class="display">
 		    <p class="form-grp">
-		        <span class="label text-warning">Gender:</span>
-		        <span class="info"><c:out value="${babyName.gender}"></c:out></span>
+		        <span class="label text-warning">Project Title:</span>
+		        <span class="info"><c:out value="${project.getTitle()}"></c:out></span>
 		    </p>
 		    <p class="form-grp">
-		        <span class="label text-warning">Origin:</span>
-		        <span class="info"><c:out value="${babyName.origin}"></c:out></span>
+		        <span class="label text-warning">Project Description:</span>       
+		        <span class="info"><c:out value="${project.getDescription()}"></c:out></span>
 		    </p>
 		    <p class="form-grp">
-		        <span class="label text-warning">Meaning:</span>       
-		        <span class="info fst-italic"><c:out value="${babyName.meaning}"></c:out></span>
-		    </p>
-		    <p class="form-grp mb-5">
-        		<c:choose>
-		        <c:when test="${voted}">
-			        <span class="label text-info">You voted for this name.</span>
-		        </c:when>
-		        <c:otherwise>
-			        <td><a class="btn btn-success form-btn" href="<c:url value='/vote/${user.id}/${babyName.id}'/>">
-					UpVote!</a></td>
-		        </c:otherwise>
-		        </c:choose>
+		        <span class="label text-warning">Due Date:</span>
+		        <span class="info"><fmt:formatDate value="${project.getDueDate()}" pattern="M/d/yyyy"/></span>
 		    </p>
         </div>
-	    <c:if test="${user.id == babyName.creator.id}">
-		    <div class="header mt-5 ms-3">
-			    <a class="btn btn-outline-warning form-btn" href="/names/edit/${babyName.id}">Edit</a>
-				<div></div>
+	    <c:if test="${joinedProject}">
+		    <div class="header mt-5">
+			    <a class="btn btn-primary form-btn" href="/projects/${project.getId()}/tasks">See Tasks</a>
+			    <c:if test="${project.getLeader().getId() == user.getId()}">
+				    <a class="btn btn-danger form-btn" href="/projects/${project.getId()}/delete">Delete Project</a>
+			    </c:if>
 		    </div>    
 	    </c:if>
     </div>
@@ -60,4 +48,4 @@
     <script src="/webjars/jquery/jquery.min.js"></script>
     <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </body>
-</html>
+</html> 

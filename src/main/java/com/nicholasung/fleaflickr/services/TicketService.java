@@ -28,6 +28,10 @@ public class TicketService {
 	public Ticket updateTicket(Ticket ticket) {
 		return ticketRepo.save(ticket);
 	}
+    // returns all the tickets for a given project
+    public List<Ticket> allProjectTickets(Long id) {
+    	return ticketRepo.findByProject_Id(id);
+    }
 	// updates a ticket for API
 	public Ticket updateTicket(Long id, String title, String priority, String status,
 			User assignee, String description, String issueType) {

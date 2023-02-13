@@ -26,7 +26,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
-@Table(name="users")
+@Table(name="projects")
 public class Project {
     // Member Variables
     @Id

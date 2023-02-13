@@ -13,25 +13,25 @@
 	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Figtree'>
 	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="/css/style.css"/>
-	<title>Project Tasks</title>
+	<title>Create Tasks</title>
 </head>
 <body>
     <div class="container">
        	<div class="header">
         	<div>
 	        	<h1 class="mt-4 text-light"><span class="text-primary">Project:</span> 
-	        	<c:out value="${project.title}"></c:out></h1>
+	        	<c:out value="${project.getTitle()}"></c:out></h1>
         		<h5 class=""><span class="text-warning">Project Lead: </span>
-        		<c:out value="${project.leader.firstName}"></c:out></h5>
+        		<c:out value="${project.getLeader().getFirstName()}"></c:out></h5>
         	</div>
         	<a class="btn btn-outline-info form-btn" href="/projects">Back to Dashboard</a>
         </div>
-		<form:form class="task-form" action="/projects/${project.id}/tasks" method="post" modelAttribute="task">
+		<form:form class="task-form" action="/projects/${project.getId()}/tasks" method="post" modelAttribute="task">
 		    <div class="errors">
 			    <h6 class="text-danger"><form:errors path="ticket"/></h6>
 		    </div>
-		    <form:hidden path="project" value="${project.id}"/>
-		    <form:hidden path="user" value="${user.id}"/>
+		    <form:hidden path="project" value="${project.getId()}"/>
+		    <form:hidden path="user" value="${user.getId()}"/>
 		    <p class="form-grp">
 		        <form:label path="ticket">Add a task ticket for<br>this team:</form:label>       
 		        <form:textarea path="ticket" rows="3"/>
@@ -46,14 +46,14 @@
     	<c:forEach var="oneTask" items="${tasks}">
     		<p class="timestamp fw-bold">
 	    		<span class="">
-		    		Added by <c:out value="${oneTask.user.firstName}"></c:out> 
-		    		at <fmt:formatDate value="${oneTask.createdAt}" pattern="h:mm aa 'on' MMM d, yyyy"/>	
+		    		Added by <c:out value="${oneTask.getUser().getFirstName()}"></c:out> 
+		    		at <fmt:formatDate value="${oneTask.getCreatedAt()}" pattern="h:mm aa 'on' MMM d, yyyy"/>	
 	    		</span>
 	    		<c:if test="${oneTask.user.id == user.id || user.id == project.leader.id}">
 		    		<a class="btn-close close-task" href="/projects/${project.id}/tasks/${oneTask.id}/delete"></a>
 	    		</c:if>
     		</p>
-    		<p class="ticket"><c:out value="${oneTask.ticket}"></c:out></p>
+    		<p class="ticket"><c:out value="${oneTask.getTicket()}"></c:out></p>
     	</c:forEach>
 	    </div>     
     </div>

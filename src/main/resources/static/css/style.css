@@ -1,0 +1,377 @@
+@charset "ISO-8859-1";
+
+/* CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* General Formatting */
+body {
+  margin: 0;
+  font-family: "Figtree",sans-serif;
+}
+html, body {
+  background-color: #212529;
+  height: 100%;
+  width: 100%;
+}
+.site-width {
+	width: 1280px;
+}
+
+/* Admin Login */
+.admin-login {
+  border: 2px solid white;
+  border-radius: 15px;
+}
+
+/* Admin Dashboard */
+.admin-dashboard .dashboard-categories {
+  margin-top: 6rem;
+  display: grid;
+  justify-content: center;
+  grid: 180px / repeat(3,18rem);
+  gap:  1rem;
+}
+.admin-dashboard .info {
+  color: snow;
+  text-decoration: none;
+  text-align: right;
+  padding: 1rem;
+  border-radius: 8px;
+}
+.admin-dashboard .info a {
+  text-align: left;
+  text-decoration: none;
+  width: 16rem;
+}
+
+/* Admin Table */
+.admin-table {
+  width: 56rem;
+  margin: 2rem auto;
+  text-align: center;
+}
+.admin-table tbody td{
+  font-size: .8rem;
+  /* font-weight: bold; */
+}
+.admin-table .users thead{
+  background-color: #bde2bc;
+}
+.admin-table .books thead{
+  background-color: #a8d4f6;
+}
+.admin-table .rentals thead{
+  background-color: #fde99f;
+}
+
+/* Admin Tools */
+.book-form-container {
+  margin-top: 5rem;
+  width: 27rem;
+  border-radius: 12px;
+  background-color: lightgray;
+}
+
+.book-form-container .form-control {
+  font-size: small;
+}
+.book-form-container .form-group input {
+  height: 25px;
+  padding: 2px 10px;
+}
+.book-form-container label {
+  font-size: 14px;
+  font-weight: bold;
+  padding-left: 5px;
+}
+.book-form-container .btn {
+  border-radius: 20px;
+  border-width: 2px;
+  padding: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-inline: auto;
+  width: 25rem;
+}
+
+
+/* EasyBook Navbar */
+.user-navbar {
+  background-color: burlywood;
+}
+.user-navbar .navbar-brand {
+  font-family: "Libre Baskerville", serif;
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0 4rem 0 1rem;
+}
+.user-navbar .spacer {
+  height: 1rem;
+}
+.user-navbar .search {
+  border-radius: 12px;
+}
+.user-navbar .search input{
+  border: 1px solid gray;
+} 
+.user-navbar #cart {
+  width: 50px;
+}
+.user-navbar .greeting {
+  font-size: .8rem;
+  margin-bottom: -.6rem;
+}
+.user-navbar .admin-tools{
+  width: 7rem;
+  border: 1.7px solid black;
+  border-radius: 2rem;
+}
+.genres {
+	display: flex;
+	justify-content: center;
+}
+.genres .site-width{
+  height: 4rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.genre {
+  color: burlywood;
+  border-radius: 7px;
+}
+.hover {
+  background-color: burlywood;
+  border-radius: 7px;
+}
+
+
+/* Easybook Home Page */
+.home-carousel {
+  display: flex;
+  justify-content: center;
+  margin-inline: auto;
+  width: 70rem;
+}
+.home-carousel img {
+  height: 34rem;
+  border-radius: 15px;
+}
+.home-carousel h5{
+  font-size: 3rem;
+  font-weight: bold;
+}
+.home-carousel .first-slide{
+  font-family: "Libre Baskerville", serif;
+  position: relative;
+  bottom: 16rem;
+  right: 7rem;
+  text-align: left;
+}
+.home-carousel .second-slide{
+  font-family: "Libre Baskerville", serif;
+  position: relative;
+  bottom: 16rem;
+  right: 7rem;
+  text-align: left;
+}
+.home-carousel .third-slide {
+  font-family: "Libre Baskerville", serif;
+  position: relative;
+  bottom: 19rem;
+  text-align: left;
+}
+.carousel-control-prev {
+  margin-left: -4rem;
+}
+.carousel-control-next {
+  margin-right: -4rem;
+}
+
+/* Login & Registration General Formatting */
+.login-reg {
+  margin-inline: auto;
+  width: 27rem;
+  padding: 3rem;
+}
+.login-reg h1 {
+  margin-bottom: 2rem;
+}
+.login-reg input {
+  border-radius: 20px;
+  padding-left: 1rem;
+  width: 22rem;
+}
+.login-reg label {
+  font-size: 18px;
+  margin-bottom: -1px;
+  padding-left: 1rem;
+}
+.login-reg .btn {
+  border-radius: 20px;
+  padding: 7px;
+  font-size: 14px;
+  margin-inline: auto;
+  width: 22rem;
+  margin-left: -12px;
+  border-width: 2px;
+}
+.login-reg .option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flash-message {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 17px;
+  margin-inline: auto;
+  width: 22rem;
+  background-color: rgb(255, 141, 141);
+  color: rgb(66, 1, 1);
+}
+
+/* User Account Page */
+.account {
+  width: 100%;
+  height: 100%;
+  padding: 2rem 10rem;
+}
+.account-options {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem  1rem;
+}
+.account-options a{
+  text-decoration: none;
+  color: black;
+}
+.account-option {
+  width: 24rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: start;
+  padding: 1rem 1rem;
+  background-color: lightgray;
+  border: 2px solid black;
+  border-radius: 1rem;
+  align-items: center;
+}
+.account-option .card-info {
+  margin-top: 1rem;
+}
+.account-option img{
+  width: 3rem;
+  height: 3rem;
+}
+.shadow {
+  box-shadow: 2px 2px 2px rgb(3, 3, 3);
+  position: relative;
+  bottom: 5px;
+  cursor: pointer;
+}
+.logout-popup {
+  background-color: lightgray;
+  border-radius: 1rem;
+
+  margin-inline: auto;
+  width: 75rem;
+  text-align: center;
+  padding: 4rem 27rem;
+  height: 18rem;
+  position: relative;
+  bottom: 16rem;
+  border: 2px solid black;
+}
+.logout-popup .message {
+  background-color: rgb(65, 64, 64);
+  padding: 2rem;
+  border-radius: 1rem;
+}
+
+
+/* All Books Page */
+.show-books {
+  padding: 2rem 10rem;
+}
+.show-books .header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Libre Baskerville", serif;
+}
+.show-books .books {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem 1rem;
+}
+.show-books .books a{
+  text-decoration: none;
+  color: black;
+  word-wrap: break-word;
+  font-size: 1.1rem;
+  text-align: center;
+}
+.show-books .book {
+  width: 12rem;
+  height: 22rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+}
+.show-books .book img{
+  width: 10rem;
+}
+
+/* Individial Book Info Page */
+.book-info {
+  padding: 2rem 18rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-areas:
+      "A B B B" 
+      "A B B B"
+      "C C C C"
+}
+.book-info .book-img {
+  grid-area: A;
+  width: 20rem;
+}
+.book-info .book-details {
+  grid-area: B;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.book-info .book-description {
+  grid-area: C;
+  font-family: "Libre Baskerville", serif;
+}
+.book-info .book-title {
+  font-family: "Libre Baskerville", serif;
+}
+.book-info .book-author {
+  text-decoration: none;
+  margin-top: -.8rem;
+  margin-bottom: -1rem;
+}
+.book-info .books {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem 1rem;
+}
+

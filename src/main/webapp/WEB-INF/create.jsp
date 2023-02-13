@@ -13,44 +13,34 @@
 	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Figtree'>
 	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="/css/style.css"/>
-	<title>Add Name</title>
+	<title>Create Project</title>
 </head>
 <body>
     <div class="container">
 		<div class="header">
-        	<h1 class="mt-4 text-success">Add a name!</h1>
+        	<h1 class="mt-4 text-success">Create a Project</h1>
         </div>
-		<form:form action="/names/new" method="post" modelAttribute="babyName">
+		<form:form action="/projects/new" method="post" modelAttribute="project">
 		    <div class="errors create-errors">
-			    <h6 class="text-danger"><form:errors path="name"/></h6>
-			    <h6 class="text-danger"><form:errors path="gender"/></h6>
-			    <h6 class="text-danger"><form:errors path="origin"/></h6>
-			    <h6 class="text-danger"><form:errors path="meaning"/></h6>
+			    <h6 class="text-danger"><form:errors path="title"/></h6>
+			    <h6 class="text-danger"><form:errors path="description"/></h6>
+			    <h6 class="text-danger"><form:errors path="dueDate"/></h6>
 		    </div>
-		    <form:hidden path="creator" value="${user.id}"/>
+		    <form:hidden path="leader" value="${user.getId()}"/>
 		    <p class="form-grp">
-		        <form:label path="name">New Name:</form:label>
-		        <form:input path="name"/>
+		        <form:label path="title">Project Title:</form:label>
+		        <form:input path="title"/>
 		    </p>
 		    <p class="form-grp">
-		        <form:label path="gender">Typical Gender:</form:label>
-		        <form:select path="gender">
-		        	<form:option class="text-center" value="" disabled="true" selected="true">--------- Pick a Gender ---------</form:option>
-		        	<form:option value="Neutral"></form:option>
-		        	<form:option value="Male"></form:option>
-		        	<form:option value="Female"></form:option>
-		        </form:select>
+		        <form:label path="description">Project Description:</form:label>       
+		        <form:textarea path="description" rows="3"/>
 		    </p>
 		    <p class="form-grp">
-		        <form:label path="origin">Origin:</form:label>
-				<form:input path="origin"/>
-		    </p>
-		    <p class="form-grp">
-		        <form:label path="meaning">Meaning:</form:label>       
-		        <form:textarea path="meaning" rows="3"/>
+		        <form:label path="dueDate">Due Date:</form:label>
+		        <form:input path="dueDate" type="date"/>
 		    </p>
 		    <div class="form-btns">
-		    	<a class="btn btn-outline-warning form-btn" href="/home">Cancel</a>
+		    	<a class="btn btn-outline-warning form-btn" href="/projects">Cancel</a>
 			    <input class="btn btn-success form-btn submit" type="submit" value="Submit"/>
 		    </div>    
 		</form:form>  

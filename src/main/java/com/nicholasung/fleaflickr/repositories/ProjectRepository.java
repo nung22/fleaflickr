@@ -11,8 +11,7 @@ import com.nicholasung.fleaflickr.models.User;
 @Repository
 public interface ProjectRepository extends CrudRepository<Project, Long> {
 	List<Project> findAll();
-	List<Project> findByUserIdIs(Long id);
-	List<Project> findByAllByLeaderIs(User leader);
-	List<Project> findByAllByUsers(User user);
-	List<Project> findByAllByUsersNotContains(User user);
+	List<Project> findByLeaderIs(User leader);
+	List<Project> findAllByUsers(User user);
+	List<Project> findByUsersNotContains(User user);
 }

@@ -13,12 +13,12 @@
 	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Figtree'>
 	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="/css/style.css"/>
-	<title>Joy Bundler</title>
+	<title>Login / Reg</title>
 </head>
 <body>
     <div class="container">
-       <h1 class="text-center site-title text-primary">Joy Bundler</h1>
-       <h5 class="text-center text-warning mt-3">A place to vote on baby names.</h5>
+       <h1 class="text-center site-title text-primary">Project Manager</h1>
+       <h5 class="text-center text-warning mt-3">A place for teams to manage projects.</h5>
        <div class="forms">
 		    <div class="login-reg reg">
 		        <form:form action="/register" method="post" modelAttribute="newUser">
@@ -52,7 +52,7 @@
 		                </div>
 		            </div>
 		            <div class="form-group row mb-3">
-		                <form:label class="text-light mb-1" path="confirm">Confirm PW</form:label>
+		                <form:label class="text-light mb-1" path="confirm">Confirm Password</form:label>
 		                <form:input class="form-control bg-light" type="password" path="confirm" placeholder="type password again"/>
 		            </div>
 		            <input class="form-control btn btn-primary fw-bold mt-2" type="submit" value="CREATE ACCOUNT"/>

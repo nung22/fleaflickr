@@ -41,8 +41,8 @@ public class Ticket {
     @NotEmpty(message="Status must be provided.")
     private String status;
     
-    @NotEmpty(message="Assignee must be provided.")
-    private User assignee;
+//    @NotEmpty(message="Assignee must be provided.")
+//    private User assignee;
     
     @Size(min = 3, max = 255, message="Description must be at least 3 characters.")
     private String description;
@@ -64,7 +64,11 @@ public class Ticket {
     
     // Implement many to one relationship with users
     @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="user_id")
+    @JoinColumn(name="assignee_user_id")
+    private User assignee;
+    // Implement many to one relationship with users
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="poster_user_id")
     private User poster;
     // Implement many to one relationship with users
     @ManyToOne(fetch=FetchType.LAZY)

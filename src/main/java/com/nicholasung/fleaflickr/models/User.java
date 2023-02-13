@@ -65,7 +65,11 @@ public class User {
     
     // Implement one to many relationship with tickets
     @OneToMany(mappedBy="poster", fetch=FetchType.LAZY)
-    private List<Ticket> tickets;
+    private List<Ticket> ticketsPosted;
+    
+    // Implement one to many relationship with tickets
+    @OneToMany(mappedBy="assignee", fetch=FetchType.LAZY)
+    private List<Ticket> ticketsAssigned;
     
     // Implement many to many relationship with tickets called comments
     @ManyToMany(fetch=FetchType.LAZY)
@@ -155,17 +159,23 @@ public class User {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-	public List<Ticket> getTickets() {
-		return tickets;
-	}
-	public void setTickets(List<Ticket> tickets) {
-		this.tickets = tickets;
-	}
 	public List<Ticket> getTicketsCommented() {
 		return ticketsCommented;
 	}
 	public void setTicketsCommented(List<Ticket> ticketsCommented) {
 		this.ticketsCommented = ticketsCommented;
+	}
+	public List<Ticket> getTicketsPosted() {
+		return ticketsPosted;
+	}
+	public void setTicketsPosted(List<Ticket> ticketsPosted) {
+		this.ticketsPosted = ticketsPosted;
+	}
+	public List<Ticket> getTicketsAssigned() {
+		return ticketsAssigned;
+	}
+	public void setTicketsAssigned(List<Ticket> ticketsAssigned) {
+		this.ticketsAssigned = ticketsAssigned;
 	}
 
 }

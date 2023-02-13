@@ -16,6 +16,7 @@ public interface TicketRepository extends CrudRepository<Ticket, Long> {
 	List<Ticket> findAllByAssignee(User assignee);
 	List<Ticket> findAllByPoster(User poster);
 	List<Ticket> findAllByProject(Project project);
+	List<Ticket> findByProject_Id(Long id);
 	List<Ticket> findAllByStatus(String status);
 	List<Ticket> findAllByIssueType(String issueType);
 	List<Ticket> findAllByPriority(String priority);
