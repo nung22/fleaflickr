@@ -1,6 +1,6 @@
 <style> .loader {
   position: fixed;
-  background-color: #262525;
+  background-color: #aaaaaa;
   opacity: 1;
   height: 100%;
   width: 100%;
