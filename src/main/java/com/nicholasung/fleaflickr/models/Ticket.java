@@ -41,12 +41,8 @@ public class Ticket {
     @NotEmpty(message="Status must be provided.")
     private String status;
     
-//    @NotEmpty(message="Assignee must be provided.")
-//    private User assignee;
-    
-    @Size(min = 3, max = 255, message="Description must be at least 3 characters.")
     private String description;
-          
+
     // createdAt & updatedAt
     @Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
@@ -77,36 +73,22 @@ public class Ticket {
     // Implement many to many relationship with user called comments
     @ManyToMany(fetch=FetchType.LAZY)
     @JoinTable(
-    		name = "comments",
-    		joinColumns = @JoinColumn(name="ticket_id"),
-    		inverseJoinColumns = @JoinColumn(name = "user_id"))
+			name = "comments",
+			joinColumns = @JoinColumn(name="ticket_id"),
+			inverseJoinColumns = @JoinColumn(name = "user_id"))
     private List<User> usersWhoCommented;
     
     // Constructors
-    public Ticket() {
-    }  
+    public Ticket() {}  
 	public Ticket(String title, String priority, String status,
-			User assignee, String description, String issueType) {
+			String description, String issueType) {
 		this.title = title;
 		this.issueType = issueType;
 		this.priority = priority;
 		this.status = status;
-		this.assignee = assignee;
 		this.description = description;
 	}
 	
-	public String getIssueType() {
-		return issueType;
-	}
-	public void setIssueType(String issueType) {
-		this.issueType = issueType;
-	}
-	public Project getProject() {
-		return project;
-	}
-	public void setProject(Project project) {
-		this.project = project;
-	}
 	// Getters & Setters
 	public Long getId() {
 		return id;
@@ -119,6 +101,18 @@ public class Ticket {
 	}
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	public String getIssueType() {
+		return issueType;
+	}
+	public void setIssueType(String issueType) {
+		this.issueType = issueType;
+	}
+	public Project getProject() {
+		return project;
+	}
+	public void setProject(Project project) {
+		this.project = project;
 	}
 	public String getDescription() {
 		return description;
