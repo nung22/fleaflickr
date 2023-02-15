@@ -2,7 +2,6 @@
 function addActive(element){
     element.classList.add("active","text-dark");
 }
-
 // Remove active
 function removeActive(element){
     element.classList.remove("active","text-dark");
@@ -11,22 +10,21 @@ function removeActive(element){
 // Add pill
 function addPill(element){
 	
-    element.classList.add("hover","text-dark");
+    element.classList.add("pill");
 }
-
 // Remove pill
 function removePill(element){
-    element.classList.remove("hover","text-dark");
+    element.classList.remove("pill");
 }
 
-// Add shadow
-function addShadow(element){
-    element.classList.add("shadow");
+// Add pill
+function addUserInfoPill(element){
+	
+    element.classList.add("user-info-pill");
 }
-
-// Remove shadow
-function removeShadow(element){
-    element.classList.remove("shadow");
+// Remove pill
+function removeUserInfoPill(element){
+    element.classList.remove("user-info-pill");
 }
 
 function displayConfirmation(){
