@@ -2,7 +2,7 @@
 <div class="loader"></div>
 <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary bg-primary shadow-lg mb-5 bg-body-tertiary px-3" style="height:4.3rem; padding: 0; z-index: 0;">
   <div class="container-fluid" >
-    <a class="navbar-brand text-light d-flex align-items-center gap-2 px-2 rounded me-5" href="/projects" onmouseover="addPill(this)" onmouseout="removePill(this)">
+    <a class="navbar-brand text-light d-flex align-items-center gap-2 px-2 rounded me-5" href="/fleaflickr/projects" onmouseover="addPill(this)" onmouseout="removePill(this)">
       <img src="/assets/icons/bug.png" alt="Logo" width="35" height="35">
       <span class="h4 pt-2" style=" font-weight:bolder">FleaFlickr</span>
     </a>
@@ -36,10 +36,6 @@
               </ul>
             </li>
           </ul>
-          <!-- <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form> -->
           <div class="d-flex align-items-center justify-content-center ms-4"
           style="border-radius: 50%; width: 3.3rem; height:3.3rem" onmouseover="addPill(this)" onmouseout="removePill(this)">
             <button type="button" class="text-light text-center d-flex align-items-center justify-content-center btn" style="background-color: rgb(36, 36, 181); border-radius: 50%; width:2.3rem; height:2.3rem"
@@ -68,7 +64,7 @@
         <a class="btn text-light" href="#" onmouseover="addUserInfoPill(this)" onmouseout="removeUserInfoPill(this)">Profile</a>
         <a class="btn text-light" href="#" onmouseover="addUserInfoPill(this)" onmouseout="removeUserInfoPill(this)">Personal Settings</a>
       </div>
-      <a class="btn text-light" href="/logout" onmouseover="addUserInfoPill(this)" onmouseout="removeUserInfoPill(this)">Logout</a>
+      <a class="btn text-light" href="/fleaflickr/logout-page" onmouseover="addUserInfoPill(this)" onmouseout="removeUserInfoPill(this)">Logout</a>
     </div>
   </div>
 </div>
