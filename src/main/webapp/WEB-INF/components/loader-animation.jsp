@@ -1,7 +1,7 @@
 <style>
   .loader {
-    -webkit-animation: load-out 1.2s;
-    animation: load-out 1.2s;
+    -webkit-animation: load-out 1.1s;
+    animation: load-out 1.1s;
     -webkit-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
   }
