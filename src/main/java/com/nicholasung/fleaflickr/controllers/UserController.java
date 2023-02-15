@@ -52,7 +52,7 @@ public class UserController {
 		// TO-DO Later: Store their ID from the DB in session,
 		// in other words, log them in.
 		session.setAttribute("user", newUser);
-		return "redirect:/projects";
+		return "redirect:/fleaflickr/projects";
 	}
 
 	// Login
@@ -74,10 +74,19 @@ public class UserController {
 		// TO-DO Later: Store their ID from the DB in session,
 		// in other words, log them in.
 		session.setAttribute("user", user);
-		return "redirect:/projects";
+		return "redirect:/fleaflickr/projects";
 	}
 
 	// LOGOUT
+	@GetMapping("/fleaflickr/logout-page")
+	public String home(HttpSession session, Model model) {
+		if (session.getAttribute("user") == null) {
+			return "redirect:/logout";
+		}
+		return "logout.jsp";
+	}
+
+	// Log out
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();

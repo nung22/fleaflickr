@@ -34,8 +34,11 @@ public class ProjectController {
 	@Autowired
 	private TicketService ticketServ;
 
-	// DASHBOARD
-	@GetMapping("/projects")
+	// LANDING PAGE
+	
+
+	// USER DASHBOARD
+	@GetMapping("/fleaflickr/projects")
 	public String home(HttpSession session, Model model) {
 		if (session.getAttribute("user") == null) {
 			return "redirect:/logout";
