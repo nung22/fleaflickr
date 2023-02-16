@@ -18,8 +18,8 @@
 </head>
 <body>
   <div class="loader"></div>
-  <div class="container d-flex flex-column align-items-center justify-content-center">
-    <div class="rounded shadow text-light d-flex flex-column gap-4 pb-4 align-items-center justify-content-center shadow" style="width: 24rem; background-color: #282c34;">
+  <div class="container d-flex flex-column align-items-center justify-content-center pt-5">
+    <div class="rounded shadow text-light d-flex flex-column gap-4 pb-4 align-items-center justify-content-center shadow mt-5" style="width: 24rem; background-color: #282c34;">
       <div class="text- bg-primary d-flex justify-content-center align-items-center gap-2 p-2 rounded-top" style="width: 24rem;">
         <img src="/assets/icons/bug.png" alt="Logo" width="35" height="35">
         <span class="h3 pt-2" style=" font-weight:bolder">FleaFlickr</span>
