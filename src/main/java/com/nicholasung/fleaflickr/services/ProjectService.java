@@ -86,9 +86,6 @@ public class ProjectService {
 
 	// deletes a project
 	public void deleteProject(Long id) {
-		Optional<Project> optionalProject = projectRepo.findById(id);
-		if (optionalProject.isPresent()) {
-			projectRepo.deleteById(id);
-		}
+		projectRepo.deleteById(id);
 	}
 }

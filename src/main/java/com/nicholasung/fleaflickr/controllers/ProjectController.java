@@ -136,7 +136,7 @@ public class ProjectController {
 	@GetMapping("/fleaflickr/projects/{id}/delete")
 	public String deleteProject(@PathVariable("id") Long id) {
 		projectServ.deleteProject(id);
-		return "redirect:/projects";
+		return "redirect:/fleaflickr/projects";
 	}
 
 	// ADD TICKET
