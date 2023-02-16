@@ -122,3 +122,31 @@ label, .label {
 .user-info-pill {
   background-color: #5f9efb;
 }
+
+/* Tooltip container */
+.tool-tip {
+  position: relative;
+}
+
+/* Tooltip text */
+.tool-tip .tooltip-text {
+  font-size: .6rem;
+  visibility: hidden;
+  width: 7rem;
+  height: 1rem;
+  background-color: rgb(177, 177, 177);
+  color: #000000;
+  text-align: center;
+  border-radius: 6px;
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  top: 100%;
+  left: 5rem; 
+  margin-left: -5rem;
+  z-index: 2;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tool-tip:hover .tooltip-text {
+  visibility: visible;
+}
