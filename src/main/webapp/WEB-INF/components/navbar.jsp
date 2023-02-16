@@ -12,33 +12,23 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mt-1 mb-lg-0">
-            <li class="nav-item">
-              <a onmouseover="addPill(this)" onmouseout="removePill(this)"
-              class="me-2 rounded text-light nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a onmouseover="addPill(this)" onmouseout="removePill(this)"
-              class="me-2 rounded text-light nav-link" href="#">Link</a>
-            </li>
             <li class="nav-item dropdown">
               <a onmouseover="addPill(this)" onmouseout="removePill(this)"
               class="me-2 rounded text-light nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown
+                Projects
               </a>
               <ul class="dropdown-menu dropdown-menu-dark shadow" style="background-color: #3384ff;">
                 <li><a onmouseover="addPill(this)" onmouseout="removePill(this)"
-                  class="me-2 rounded text-light dropdown-item" href="#">Action</a></li>
-                <li><a onmouseover="addPill(this)" onmouseout="removePill(this)"
-                  class="me-2 rounded text-light dropdown-item" href="#">Another action</a></li>
+                  class="me-2 rounded text-light dropdown-item" href="#">Project Hub</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a onmouseover="addPill(this)" onmouseout="removePill(this)"
-                  class="me-2 rounded text-light dropdown-item" href="#">Something else here</a></li>
+                  class="me-2 rounded text-light dropdown-item" href="/fleaflickr/projects">Your Projects</a></li>
               </ul>
             </li>
           </ul>
           <div class="d-flex align-items-center justify-content-center ms-4"
           style="border-radius: 50%; width: 3.3rem; height:3.3rem" onmouseover="addPill(this)" onmouseout="removePill(this)">
-            <button type="button" class="text-light text-center d-flex align-items-center justify-content-center btn" style="background-color: rgb(36, 36, 181); border-radius: 50%; width:2.3rem; height:2.3rem"
+            <button type="button" class="text-light text-center d-flex align-items-center justify-content-center btn" style="background-color: rgb(59, 59, 203); border-radius: 50%; width:2.3rem; height:2.3rem"
             data-bs-toggle="collapse" data-bs-target="#userSettings" aria-expanded="false" aria-controls="userSettings">
               <span>${param.initials} </span>
             </button>
