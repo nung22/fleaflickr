@@ -26,8 +26,8 @@
 	<div class="container d-flex justify-content-center">
 		<div class="px-5 pt-5 pb-2 rounded shadow" style="width:970px; background-color: #282c34;">
 			<div class="mb-4">
-				<h1 class="text-light" aria-describedby="createProjectHelpBlock">Update project details</h1>
-				<div id="createProjectHelpBlock" class="form-text text-light fw-light fs-6" style="opacity: .6;">
+				<h1 class="text-light" aria-describedby="editProjectHelpBlock">Update project details</h1>
+				<div id="editProjectHelpBlock" class="form-text text-light fw-light fs-6" style="opacity: .6;">
 					You can change this information anytime in your project settings.
 				</div>
 			</div>
