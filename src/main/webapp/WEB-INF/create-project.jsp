@@ -24,7 +24,7 @@
     <jsp:param name="id" value="${user.id}"/>
 	</jsp:include> 
 	<div class="container d-flex justify-content-center">
-		<div class="px-5 pt-5 pb-2 rounded" style="width:970px; background-color: #282c34;">
+		<div class="px-5 pt-5 pb-2 rounded shadow" style="width:970px; background-color: #282c34;">
 			<div class="mb-4">
 				<h1 class="text-light" aria-describedby="createProjectHelpBlock">Add project details</h1>
 				<div id="createProjectHelpBlock" class="form-text text-light fw-light fs-6" style="opacity: .6;">

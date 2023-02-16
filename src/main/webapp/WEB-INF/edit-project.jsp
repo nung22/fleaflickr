@@ -23,35 +23,53 @@
     <jsp:param name="email" value="${user.email}"/>
     <jsp:param name="id" value="${user.id}"/>
 	</jsp:include> 
-	<div class="container">
-		<div class="header">
-			<h1 class="mt-4 text-warning">Edit Project</h1>
+	<div class="container d-flex justify-content-center">
+		<div class="px-5 pt-5 pb-2 rounded shadow" style="width:970px; background-color: #282c34;">
+			<div class="mb-4">
+				<h1 class="text-light" aria-describedby="createProjectHelpBlock">Update project details</h1>
+				<div id="createProjectHelpBlock" class="form-text text-light fw-light fs-6" style="opacity: .6;">
+					You can change this information anytime in your project settings.
+				</div>
+			</div>
+			<form:form action="/fleaflickr/projects/edit/${project.id}" method="put" modelAttribute="project">
+				<div class="errors create-errors">
+					<h6 class="text-danger"><form:errors path="title"/></h6>
+					<h6 class="text-danger"><form:errors path="description"/></h6>
+					<h6 class="text-danger"><form:errors path="dueDate"/></h6>
+				</div>
+				<form:hidden path="leader" value="${user.getId()}"/>
+				<div class="d-flex justify-content-between">
+					<div style="width:24rem">
+						<div class="form-grp">
+							<form:label class="form-label" path="title">Name</form:label>
+							<form:input class="form-control" style="background-color:#212426; color: snow;" path="title" required="true"
+							oninput="document.getElementById('key').value = this.value.substring(0,4).toUpperCase() "/>
+						</div>
+						<div class="form-grp">
+							<form:label class="form-label" path="" aria-describedby="keyHelpBlock">Key <span style="font-size: medium; opacity: .5;">(auto-generated)</span></form:label>
+							<form:input path="" class="form-control" id="key" disabled="true" style="background-color:#212426; color: snow; height:2.4rem; border-width: 0;" value="${project.title.substring(0,4).toUpperCase()}"/>
+							<div id="keyHelpBlock" class="form-text">
+								Created from first 4 characters of project name.
+							</div>
+						</div>
+					</div>
+					<div style="width:24rem">
+						<div class="form-grp">
+							<form:label class="form-label" path="description">Project Description</form:label>
+							<form:textarea class="form-control" style="background-color:#212426; color: snow;" path="description" rows="3" required="true"/>
+						</div>
+						<div class="form-grp">
+							<form:label class="form-label" path="dueDate">Due Date</form:label>
+							<form:input class="form-control" style="background-color:#212426; color: snow;" path="dueDate" type="date" required="true"/>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer pt-4 mt-4">
+					<a class="btn btn-dark" href="/fleaflickr/projects">Cancel</a>
+					<input class="btn btn-primary ms-2" type="submit" value="Update project" style="width:8.5rem"/>
+				</div>
+			</form:form>
 		</div>
-		<form:form action="/fleaflickr/projects/edit/${project.getId()}" method="post" modelAttribute="project">
-			<div class="errors edit-errors">
-				<h6 class="text-danger"><form:errors path="title"/></h6>
-				<h6 class="text-danger"><form:errors path="description"/></h6>
-				<h6 class="text-danger"><form:errors path="dueDate"/></h6>
-			</div>
-			<input type="hidden" name="_method" value="put">
-			<form:hidden path="leader"/>
-			<p class="form-grp">
-					<form:label path="title">Project Title:</form:label>
-					<form:input path="title"/>
-			</p>
-			<p class="form-grp">
-					<form:label path="description">Project Description:</form:label>       
-					<form:textarea path="description" rows="3"/>
-			</p>
-			<p class="form-grp">
-					<form:label path="dueDate">Due Date:</form:label>
-					<form:input path="dueDate" type="date"/>
-			</p>
-			<div class="form-btns">
-				<a class="btn btn-outline-warning form-btn" href="/fleaflickr/projects">Cancel</a>
-				<input class="btn btn-success form-btn submit" type="submit" value="Submit"/>
-			</div>
-		</form:form>
 	</div>
 	<script type="text/javascript" src="/js/app.js"></script>
 	<script src="/webjars/jquery/jquery.min.js"></script>
