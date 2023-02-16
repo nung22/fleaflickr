@@ -3,32 +3,32 @@
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 	<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-	<div%@ page isErrorPage="true" %>
+	<%@ page isErrorPage="true" %>
 <!DOCTYPE html>
 <html lang="en">
 <jsp:include page="./components/loader-style.jsp"/>
 <head>
 	<meta charset="ISO-8859-1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <jsp:include page="./components/font.jsp"/>
 	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="/css/style.css"/>
 	<title>Create Tickets</title>
 </head>
 <body>
-	<jsp:include page="./components/navbar.jsp"/> 
+	<jsp:include page="./components/navbar.jsp">
+    <jsp:param name="initials" value="${user.firstName.charAt(0)}${user.lastName.charAt(0)}"/>
+    <jsp:param name="fullName" value="${user.firstName} ${user.lastName}"/>
+    <jsp:param name="email" value="${user.email}"/>
+    <jsp:param name="id" value="${user.id}"/>
+	</jsp:include> 
 	<div class="container">
 		<div class="header">
-			<div>
-				<h1 class="mt-4 text-light"><span class="text-primary">Project:</span> 
-				<c:out value="${project.getTitle()}"></c:out></h1>
-				<h5 class=""><span class="text-warning">Project Lead: </span>
-				<c:out value="${project.getLeader().getFirstName()}"></c:out></h5>
-			</div>
+			<h2>Tickets</h2>
 			<!-- Button trigger modal -->
 			<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-				Create Ticket
+				+ Create Ticket
 			</button>
 		</div>
 
@@ -40,7 +40,7 @@
 						<h1 class="modal-title fs-5" id="staticBackdropLabel">Create ticket</h1>
 						<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
-					<form:form class="ticket-form" action="/projects/${project.getId()}/tickets" method="post" modelAttribute="ticket">
+					<form:form class="ticket-form" action="/fleaflickr/projects/${project.getId()}/tickets" method="post" modelAttribute="ticket">
 						<div class="modal-body">
 							<div class="errors">
 								<h6 class="text-danger"><form:errors path="title"/></h6>
@@ -107,35 +107,59 @@
 			</div>
 		</div>
 
-		<table class="table table-hover">
-			<thead class="m-10 table-header">
-				<tr class="h5">
-					<th scope="col">Type</th>
-					<th scope="col">Key</th>
-					<th scope="col">Description</th>
-					<th scope="col">Assignee</th>
-					<th scope="col">Poster</th>
-				</tr>
-			</thead>
-			<tbody>
-			<c:forEach var="oneTicket" items="${tickets}">
-				<tr>
-					<!-- <span class="">
-						Added by <c:out value="${oneTicket.poster.firstName}"></c:out> 
-						at <fmt:formatDate value="${oneTicket.getCreatedAt()}" pattern="h:mm aa 'on' MMM d, yyyy"/>	
-					</span>
-					<c:if test="${oneTicket.poster.id == user.id || user.id == project.leader.id}">
-						<a class="btn-close close-ticket" href="/projects/${project.id}/tickets/${oneTicket.id}/delete"></a>
-					</c:if> -->
-					<td class="ps-2"><c:out value="${oneTicket.issueType}"></c:out></td>
-					<td class="ps-2"><c:out value="${oneTicket.project.title.substring(0,4).toUpperCase()}-${oneTicket.id}"></c:out></td>
-					<td class="ps-2"><c:out value="${oneTicket.title}"></c:out></td>
-					<td class="ps-2"><c:out value="${oneTicket.assignee.firstName} ${oneTicket.assignee.lastName}"></c:out></td>
-					<td class="ps-2"><c:out value="${oneTicket.poster.firstName} ${oneTicket.poster.lastName}"></c:out></td>
-				</tr>
-			</c:forEach>
-			</tbody>
-		</table>
+    <div class="table-holder rounded">
+			<table class="table table-dark table-hover">
+				<thead class="m-10 table-header">
+					<tr style="line-height: 2.3rem;" class="fs-5">
+						<th class="ps-3" scope="col">Type</th>
+						<th scope="col">Key</th>
+						<th scope="col">Summary</th>
+						<th scope="col">Assignee</th>
+						<th scope="col">Poster</th>
+					</tr>
+				</thead>
+				<tbody>
+				<c:forEach var="oneTicket" items="${tickets}" varStatus="status">
+					<c:set var="reverseIndex" value="${tickets.size() - status.index - 1}" />
+					<tr style="line-height: 2.3rem;" class="align-middle">
+						<!-- <span class="">
+							Added by <c:out value="${oneTicket.poster.firstName}"></c:out> 
+							at <fmt:formatDate value="${oneTicket.getCreatedAt()}" pattern="h:mm aa 'on' MMM d, yyyy"/>	
+						</span>
+						<c:if test="${oneTicket.poster.id == user.id || user.id == project.leader.id}">
+							<a class="btn-close close-ticket" href="/fleaflickr/projects/${project.id}/tickets/${oneTicket.id}/delete"></a>
+						</c:if> -->
+						<td class="ps-3">
+							<c:if test="${tickets[reverseIndex].issueType == 'Bug'}">
+								<div class="rounded text-center issue-type" style="background-color: #aa372c;">
+									<span>BUG</span>
+								</div>
+							</c:if>
+							<c:if test="${tickets[reverseIndex].issueType == 'Improvement'}">
+								<div class="rounded text-center issue-type" style="background-color: #427b28;">
+									<span>IMPR</span>
+								</div>
+							</c:if>
+							<c:if test="${tickets[reverseIndex].issueType == 'Task'}">
+								<div class="rounded text-center issue-type" style="background-color: #2f6c93;">
+									<span>TASK</span>
+								</div>
+							</c:if>
+							<c:if test="${tickets[reverseIndex].issueType == 'New Feature'}">
+								<div class="rounded text-center issue-type" style="background-color: #904ee2;">
+									<span>NEW</span>
+								</div>
+							</c:if>
+						</td>
+						<td class="ps-2"><c:out value="${tickets[reverseIndex].project.title.substring(0,4).toUpperCase()}-${tickets[reverseIndex].id}"></c:out></td>
+						<td class="ps-2"><c:out value="${tickets[reverseIndex].title}"></c:out></td>
+						<td class="ps-2"><c:out value="${tickets[reverseIndex].assignee.firstName} ${tickets[reverseIndex].assignee.lastName}"></c:out></td>
+						<td class="ps-2"><c:out value="${tickets[reverseIndex].poster.firstName} ${tickets[reverseIndex].poster.lastName}"></c:out></td>
+					</tr>
+				</c:forEach>
+				</tbody>
+			</table>
+		</div>
 	</div>
 	<script type="text/javascript" src="/js/app.js"></script>
 	<script src="/webjars/jquery/jquery.min.js"></script>
