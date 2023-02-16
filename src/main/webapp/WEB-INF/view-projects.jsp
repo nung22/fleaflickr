@@ -14,7 +14,7 @@
   <jsp:include page="./components/font.jsp"/>
   <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
   <link rel="stylesheet" href="/css/style.css" />
-  <title>Show Projects</title>
+  <title>FleaFlickr | Project Dashboard</title>
 </head>
 <body>
 	<jsp:include page="./components/navbar.jsp">
@@ -25,7 +25,7 @@
 	</jsp:include> 
   <div class="container">
     <div class="d-flex justify-content-between table-header mb-5">
-      <h2>Your Projects</h2>
+      <h2>Projects</h2>
       <a class="btn btn-primary" href="/fleaflickr/projects/new">+ Create Project</a>
     </div>
     <div class="table-holder rounded">
@@ -41,38 +41,41 @@
         </thead>
         <tbody>
           <c:forEach var="oneProject" items="${projectsOnTeam}">
-            <tr style="line-height: 2.3rem;" class="align-middle">
+            <tr style="line-height: 2.7rem;" class="align-middle">
               <td class="ps-5">
                 <a
                   class="text-decoration-none" style="color: #4b92fc"
-                  href="<c:url value='/fleaflickr/projects/${oneProject.getId()}'/>"
+                  href="<c:url value='/fleaflickr/projects/${oneProject.id}'/>"
                 onmouseover="this.classList.add('text-decoration-underline')" onmouseout="this.classList.remove('text-decoration-underline')">
-                  <c:out value="${oneProject.getTitle()}"
+                  <c:out value="${oneProject.title}"
                 /></a>
               </td>
               <td>
-                <c:out value="${oneProject.getTitle().substring(0,4).toUpperCase()}" />
+                <c:out value="${oneProject.title.substring(0,4).toUpperCase()}" />
               </td>
               <td>
                 <fmt:formatDate
-                value="${oneProject.getDueDate()}"
+                value="${oneProject.dueDate}"
                 pattern="MMMM d, yyyy"
                 />
               </td>
-              <td>
-                <c:out value="${oneProject.getLeader().getFirstName()} ${oneProject.getLeader().getLastName()}" />
+              <td class="d-flex flex-row gap-2 align-items-center">
+                <div class="text-light text-center d-flex align-items-center justify-content-center me-1" style="background-color: rgb(59, 59, 203); border-radius: 50%; width:2.1rem; height:2.1rem; font-size: 1rem;">
+                  <span><c:out value="${user.firstName.charAt(0)}${user.lastName.charAt(0)}"/></span>
+                </div>
+                <c:out value="${oneProject.leader.firstName} ${oneProject.leader.lastName}" />
               </td>
               <td>
                 <c:choose>
                   <c:when
-                    test="${oneProject.getLeader().getId() == user.getId()}">
+                    test="${oneProject.leader.id == user.id}">
                     <a class="rounded btn" style="padding: .3rem .5rem .5rem .5rem;" id="projectIcon"
                       onmouseover="this.classList.add('bg-dark')" onmouseout="this.classList.remove('bg-dark')">
                       <img src="/assets/icons/gear.png" width="18" alt="gear">
                     </a>           
                   </c:when>
                   <c:otherwise>
-                    <a class="text-decoration-none text-danger" href="<c:url value='/leave/${user.getId()}/${oneProject.getId()}'/>" on>
+                    <a class="text-decoration-none text-danger" href="<c:url value='/leave/${user.id}/${oneProject.id}'/>" on>
                     Leave Team</a>
                   </c:otherwise>
                 </c:choose>
