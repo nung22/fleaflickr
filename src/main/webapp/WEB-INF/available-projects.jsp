@@ -14,7 +14,7 @@
               <td>
                 <a
                   class="text-decoration-none"
-                  href="<c:url value='/projects/${oneProject.getId()}'/>"
+                  href="<c:url value='/fleaflickr/projects/${oneProject.getId()}'/>"
                 >
                   <c:out value="${oneProject.getTitle()}"
                 /></a>
