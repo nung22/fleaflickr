@@ -14,7 +14,7 @@
   <jsp:include page="./components/font.jsp"/>
 	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="/css/style.css"/>
-	<title>Create Tickets</title>
+	<title>FleaFlickr | Tickets</title>
 </head>
 <body>
 	<jsp:include page="./components/navbar.jsp">
@@ -24,8 +24,18 @@
     <jsp:param name="id" value="${user.id}"/>
 	</jsp:include> 
 	<div class="container">
-		<div class="header">
-			<h2>Tickets</h2>
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="/fleaflickr/projects" class="text-light text-decoration-none"
+					onmouseover="this.classList.remove('text-decoration-none')"
+          onmouseout="this.classList.add('text-decoration-none')">
+					Projects</a></li>
+				<li class="breadcrumb-item active" aria-current="page"><c:out value="${project.title}"/></li>
+			</ol>
+		</nav>
+		<div class="header mb-3">
+			<h2 class="fw-bold text-warning">Tickets</h2>
 			<!-- Button trigger modal -->
 			<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
 				+ Create Ticket
@@ -110,7 +120,7 @@
     <div class="table-holder rounded">
 			<table class="table table-dark table-hover">
 				<thead class="m-10 table-header">
-					<tr style="line-height: 2.3rem;" class="fs-5">
+					<tr style="line-height: 2.3rem; opacity: .6;" class="fs-5">
 						<th class="ps-3" scope="col">Type</th>
 						<th scope="col">Key</th>
 						<th scope="col">Summary</th>
@@ -131,30 +141,40 @@
 						</c:if> -->
 						<td class="ps-3">
 							<c:if test="${tickets[reverseIndex].issueType == 'Bug'}">
-								<div class="rounded text-center issue-type" style="background-color: #aa372c;">
+								<div class="tool-tip rounded text-center issue-type" style="background-color: #aa372c;">
 									<span>BUG</span>
+									<!-- <p class="tooltip-text">Bug</p> -->
 								</div>
 							</c:if>
 							<c:if test="${tickets[reverseIndex].issueType == 'Improvement'}">
-								<div class="rounded text-center issue-type" style="background-color: #427b28;">
+								<div class="tool-tip rounded text-center issue-type" style="background-color: #427b28;">
 									<span>IMPR</span>
+									<!-- <p class="tooltip-text">Improvement</p> -->
 								</div>
 							</c:if>
 							<c:if test="${tickets[reverseIndex].issueType == 'Task'}">
-								<div class="rounded text-center issue-type" style="background-color: #2f6c93;">
+								<div class="tool-tip rounded text-center issue-type" style="background-color: #2f6c93;">
 									<span>TASK</span>
+									<!-- <p class="tooltip-text">Task</p> -->
 								</div>
 							</c:if>
 							<c:if test="${tickets[reverseIndex].issueType == 'New Feature'}">
-								<div class="rounded text-center issue-type" style="background-color: #904ee2;">
+								<div class="tool-tip rounded text-center issue-type" style="background-color: #904ee2;">
 									<span>NEW</span>
+									<!-- <p class="tooltip-text">New Feature</p> -->
 								</div>
 							</c:if>
 						</td>
 						<td class="ps-2"><c:out value="${tickets[reverseIndex].project.title.substring(0,4).toUpperCase()}-${tickets[reverseIndex].id}"></c:out></td>
-						<td class="ps-2"><c:out value="${tickets[reverseIndex].title}"></c:out></td>
-						<td class="ps-2"><c:out value="${tickets[reverseIndex].assignee.firstName} ${tickets[reverseIndex].assignee.lastName}"></c:out></td>
-						<td class="ps-2"><c:out value="${tickets[reverseIndex].poster.firstName} ${tickets[reverseIndex].poster.lastName}"></c:out></td>
+						<td class="ps-2">
+							<a class="text-decoration-none" style="color: #4b92fc"
+							href="<c:url value='/fleaflickr/projects/${project.id}/tickets/${tickets[reverseIndex].id}'/>"
+							onmouseover="this.classList.add('text-decoration-underline')" onmouseout="this.classList.remove('text-decoration-underline')">
+							<c:out value="${tickets[reverseIndex].title}"></c:out>
+						</a>
+						</td>
+						<td class="ps-2"><c:out value="${tickets[reverseIndex].assignee.firstName} ${tickets[reverseIndex].assignee.lastName.charAt(0)}"></c:out>.</td>
+						<td class="ps-2"><c:out value="${tickets[reverseIndex].poster.firstName} ${tickets[reverseIndex].poster.lastName.charAt(0)}"></c:out>.</td>
 					</tr>
 				</c:forEach>
 				</tbody>
