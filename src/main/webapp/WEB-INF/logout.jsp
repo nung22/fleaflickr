@@ -14,7 +14,7 @@
   <jsp:include page="./components/font.jsp"/>
   <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
   <link rel="stylesheet" href="/css/style.css" />
-  <title>FleaFlickr | Logout</title>
+  <title>FleaFlickr | Log out</title>
 </head>
 <body>
   <div class="loader"></div>
