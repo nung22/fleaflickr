@@ -29,17 +29,25 @@
 				<li class="breadcrumb-item">
 					<a href="/fleaflickr/projects" class="text-light text-decoration-none"
 					onmouseover="this.classList.remove('text-decoration-none')"
-          onmouseout="this.classList.add('text-decoration-none')">
+					onmouseout="this.classList.add('text-decoration-none')">
 					Projects</a></li>
-				<li class="breadcrumb-item active" aria-current="page"><c:out value="${project.title}"/></li>
+				<li class="breadcrumb-item">
+					<a href="/fleaflickr/projects/${project.id}" class="text-light text-decoration-none"
+					onmouseover="this.classList.remove('text-decoration-none')"
+					onmouseout="this.classList.add('text-decoration-none')">
+					<c:out value="${project.title}"/></a></li>
+				<li class="breadcrumb-item active" aria-current="page">Tickets</li>
 			</ol>
 		</nav>
 		<div class="header mb-3">
 			<h2 class="fw-bold text-warning">Tickets</h2>
-			<!-- Button trigger modal -->
-			<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-				+ Create Ticket
-			</button>
+			<div class="d-flex gap-2">
+				<a class="btn btn-dark dark-btn" href="/fleaflickr/projects/${project.id}">Project Details</a>
+				<!-- Button trigger modal -->
+				<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+					+ Create Ticket
+				</button>
+			</div>
 		</div>
 
 		<!-- Modal -->
@@ -50,7 +58,7 @@
 						<h1 class="modal-title fs-5" id="staticBackdropLabel">Create ticket</h1>
 						<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
-					<form:form class="ticket-form" action="/fleaflickr/projects/${project.getId()}/tickets" method="post" modelAttribute="ticket">
+					<form:form class="ticket-form" action="/fleaflickr/projects/${project.id}/tickets" method="post" modelAttribute="ticket">
 						<div class="modal-body">
 							<div class="errors">
 								<h6 class="text-danger"><form:errors path="title"/></h6>
@@ -59,11 +67,12 @@
 								<h6 class="text-danger"><form:errors path="status"/></h6>
 								<h6 class="text-danger"><form:errors path="description"/></h6>
 							</div>
-							<form:hidden path="project" value="${project.getId()}"/>
-							<form:hidden path="poster" value="${user.getId()}"/>
+							<form:hidden path="usersWhoCommented" value=""/>
+							<form:hidden path="project" value="${project.id}"/>
+							<form:hidden path="poster" value="${user.id}"/>
 							<div class="form-grp">
-								<form:label class="form-label" path="issueType">Issue type <span class="text-danger">*</span></form:label>       
-								<form:select class="form-control form-ipt" style="background-color:#282b2d; color: snow;" path="issueType">
+								<form:label class="form-label" path="issueType">Issue type <span class="text-danger">*</span></form:label>
+								<form:select class="form-select form-ipt" style="background-color:#282b2d; color: snow;" path="issueType">
 									<option value="Bug" selected>Bug</option>
 									<option value="Improvement">Improvement</option>
 									<option value="Task">Task</option>
@@ -72,7 +81,7 @@
 							</div>
 							<div class="form-grp">
 								<form:label class="form-label" path="status">Status</form:label>
-								<form:select class="form-control form-ipt" style="background-color:#282b2d; color: snow;" path="status">
+								<form:select class="form-select form-ipt" style="background-color:#282b2d; color: snow;" path="status">
 									<option value="To Do" selected>To Do</option>
 									<option value="In Progress">In Progress</option>
 									<option value="In Review">In Review</option>
@@ -80,16 +89,16 @@
 								</form:select>
 							</div>
 							<div class="form-grp">
-								<form:label class="form-label" path="title">Summary <span class="text-danger">*</span></form:label>       
-								<form:input class="form-control form-ipt" style="background-color:#282b2d; color: snow;" path="title" required="true"/>
+								<form:label class="form-label" path="title">Summary <span class="text-danger">*</span></form:label>
+								<form:input class="form-control form-ipt" style="background-color:#282b2d; color: snow;" placeholder="Type here" path="title" required="true"/>
 							</div>
 							<div class="form-grp">
-								<form:label class="form-label" path="description">Description</form:label>       
-								<form:textarea class="form-control form-ipt" style="background-color:#282b2d; color: snow;" path="description" rows="3" placeholder="Type here"/>
+								<form:label class="form-label" path="description">Description</form:label>
+								<form:textarea class="form-control form-ipt" style="background-color:#282b2d; color: snow;" path="description" rows="3" placeholder="Add a description..."/>
 							</div>
 							<div class="form-grp">
-								<form:label class="form-label" path="priority">Priority</form:label>       
-								<form:select class="form-control form-ipt" style="background-color:#282b2d; color: snow;" path="priority">
+								<form:label class="form-label" path="priority">Priority</form:label>
+								<form:select class="form-select form-ipt" style="background-color:#282b2d; color: snow;" path="priority">
 									<option value="Medium" selected>Medium</option>
 									<option value="Highest">Highest</option>
 									<option value="High">High</option>
@@ -98,12 +107,12 @@
 								</form:select>
 							</div>
 							<div class="form-grp">
-								<form:label class="form-label" path="assignee">Assignee</form:label>       
-								<form:select class="form-control form-ipt" style="background-color:#282b2d; color: snow;" path="assignee">
-									<option value="${user.getId()}" selected>Automatic</option>
+								<form:label class="form-label" path="assignee">Assignee</form:label>
+								<form:select class="form-select form-ipt" style="background-color:#282b2d; color: snow;" path="assignee">
+									<option value="${user.id}" selected>Automatic</option>
 									<c:forEach var="oneUser" items="${allUsers}">
-										<option value="${oneUser.getId()}">
-											<c:out value="${oneUser.getFirstName()} ${oneUser.getLastName()}"></c:out></option>
+										<option value="${oneUser.id}">
+											<c:out value="${oneUser.firstName} ${oneUser.lastName}"></c:out></option>
 									</c:forEach>
 								</form:select>
 							</div>
@@ -120,12 +129,13 @@
     <div class="table-holder rounded">
 			<table class="table table-dark table-hover">
 				<thead class="m-10 table-header">
-					<tr style="line-height: 2.3rem; opacity: .6;" class="fs-5">
+					<tr style="line-height: 2.3rem; color: #909294;" class="fs-5">
 						<th class="ps-3" scope="col">Type</th>
 						<th scope="col">Key</th>
 						<th scope="col">Summary</th>
+						<th scope="col">Status</th>
 						<th scope="col">Assignee</th>
-						<th scope="col">Poster</th>
+						<th scope="col">Reporter</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -168,10 +178,36 @@
 						<td class="ps-2"><c:out value="${tickets[reverseIndex].project.title.substring(0,4).toUpperCase()}-${tickets[reverseIndex].id}"></c:out></td>
 						<td class="ps-2">
 							<a class="text-decoration-none" style="color: #4b92fc"
-							href="<c:url value='/fleaflickr/projects/${project.id}/tickets/${tickets[reverseIndex].id}'/>"
+							href="<c:url value='/fleaflickr/projects/${project.id}/tickets/${tickets[reverseIndex].id}/edit'/>"
 							onmouseover="this.classList.add('text-decoration-underline')" onmouseout="this.classList.remove('text-decoration-underline')">
 							<c:out value="${tickets[reverseIndex].title}"></c:out>
 						</a>
+						</td>
+						<td class="ps-2">
+							<c:if test="${tickets[reverseIndex].status == 'To Do'}">
+								<div class="tool-tip rounded text-center status" style="background-color: #6565657a;">
+									<span>TO DO</span>
+									<!-- <p class="tooltip-text">Bug</p> -->
+								</div>
+							</c:if>
+							<c:if test="${tickets[reverseIndex].status == 'In Progress'}">
+								<div class="tool-tip rounded text-center status" style="background-color: #3a47ff81;">
+									<span>IN PROGRESS</span>
+									<!-- <p class="tooltip-text">Improvement</p> -->
+								</div>
+							</c:if>
+							<c:if test="${tickets[reverseIndex].status == 'In Review'}">
+								<div class="tool-tip rounded text-center status" style="background-color: #c3bd007c;">
+									<span>IN REVIEW</span>
+									<!-- <p class="tooltip-text">Task</p> -->
+								</div>
+							</c:if>
+							<c:if test="${tickets[reverseIndex].status == 'Done'}">
+								<div class="tool-tip rounded text-center status" style="background-color: #06860a50;">
+									<span>DONE</span>
+									<!-- <p class="tooltip-text">New Feature</p> -->
+								</div>
+							</c:if>
 						</td>
 						<td class="ps-2"><c:out value="${tickets[reverseIndex].assignee.firstName} ${tickets[reverseIndex].assignee.lastName.charAt(0)}"></c:out>.</td>
 						<td class="ps-2"><c:out value="${tickets[reverseIndex].poster.firstName} ${tickets[reverseIndex].poster.lastName.charAt(0)}"></c:out>.</td>
