@@ -44,11 +44,23 @@ public class ProjectController {
 			return "redirect:/logout";
 		}
 		User user = (User) session.getAttribute("user");
-		List<Project> projectsNotOnTeam = projectServ.allProjectsNotOnTeam(user);
 		List<Project> projectsOnTeam = projectServ.allProjectsOnTeam(user);
-		model.addAttribute("projectsNotOnTeam", projectsNotOnTeam);
 		model.addAttribute("projectsOnTeam", projectsOnTeam);
 		return "view-projects.jsp";
+	}
+
+	// PROJECT HUB
+	@GetMapping("/fleaflickr/projects/available")
+	public String projectHub(HttpSession session, Model model) {
+		if (session.getAttribute("user") == null) {
+			return "redirect:/logout";
+		}
+		User user = (User) session.getAttribute("user");
+		List<Project> projectsNotOnTeam = projectServ.allProjectsNotOnTeam(user);
+		// List<Project> projectsOnTeam = projectServ.allProjectsOnTeam(user);
+		model.addAttribute("projectsNotOnTeam", projectsNotOnTeam);
+		// model.addAttribute("projectsOnTeam", projectsOnTeam);
+		return "available-projects.jsp";
 	}
 
 	// Join Team
@@ -80,17 +92,17 @@ public class ProjectController {
 		model.addAttribute("project", project);
 		return "project-details.jsp";
 	}
-
+	
 	// ADD PROJECT
 	@GetMapping("/fleaflickr/projects/new")
 	public String addProject(HttpSession session,
-			@ModelAttribute("project") Project emptyProject) {
+	@ModelAttribute("project") Project emptyProject) {
 		if (session.getAttribute("user") == null) {
 			return "redirect:/logout";
 		}
 		return "create-project.jsp";
 	}
-
+	
 	// Add Project
 	@PostMapping("/fleaflickr/projects/new")
 	public String addProject(HttpSession session,
@@ -116,7 +128,7 @@ public class ProjectController {
 		model.addAttribute("project", project);
 		return "edit-project.jsp";
 	}
-
+	
 	// Edit Project
 	@PutMapping("/fleaflickr/projects/edit/{id}")
 	public String editProject(HttpSession session, @PathVariable("id") Long id,
@@ -131,7 +143,7 @@ public class ProjectController {
 		projectServ.addUserToProject(editedProject.getId(), user.getId());
 		return "redirect:/fleaflickr/projects";
 	}
-
+	
 	// DELETE PROJECT
 	@GetMapping("/fleaflickr/projects/{id}/delete")
 	public String deleteProject(@PathVariable("id") Long id) {
@@ -142,7 +154,7 @@ public class ProjectController {
 	// ADD TICKET
 	@GetMapping("/fleaflickr/projects/{id}/tickets")
 	public String addTicket(HttpSession session, Model model,
-			@PathVariable("id") Long id,
+	@PathVariable("id") Long id,
 			@ModelAttribute("ticket") Ticket emptyTicket) {
 		if (session.getAttribute("user") == null) {
 			return "redirect:/logout";
@@ -150,28 +162,78 @@ public class ProjectController {
 		Project project = projectServ.findProject(id);
 		List<Ticket> tickets = ticketServ.allProjectTickets(id);
 		List<User> allUsers = userServ.allUsers();
-		model.addAttribute("project", project);
 		model.addAttribute("allUsers", allUsers);
+		model.addAttribute("project", project);
 		model.addAttribute("tickets", tickets);
-		return "tickets.jsp";
+		return "view-tickets.jsp";
 	}
-
 	// Add Ticket
 	@PostMapping("/fleaflickr/projects/{projectId}/tickets")
 	public String addTicket(@PathVariable("projectId") Long projectId, Model model,
-			@Valid @ModelAttribute("ticket") Ticket filledTicket,
-			BindingResult result) {
+	@Valid @ModelAttribute("ticket") Ticket filledTicket,
+	BindingResult result) {
 		if (result.hasErrors()) {
 			Project project = projectServ.findProject(projectId);
 			List<Ticket> tickets = ticketServ.allProjectTickets(projectId);
 			model.addAttribute("project", project);
 			model.addAttribute("tickets", tickets);
-			return "tickets.jsp";
+			return "view-tickets.jsp";
 		}
 		ticketServ.createTicket(filledTicket);
 		return "redirect:/fleaflickr/projects/{projectId}/tickets";
 	}
 
+	// SHOW TICKET INFO
+	@GetMapping("/fleaflickr/projects/{projectId}/tickets/{ticketId}")
+	public String show(HttpSession session, @PathVariable("projectId") Long projectId,
+	@PathVariable("ticketId") Long ticketId, Model model) {
+		if (session.getAttribute("user") == null) {
+			return "redirect:/logout";
+		}
+		User user = (User) session.getAttribute("user");
+		Project project = projectServ.findProject(projectId);
+		Ticket ticket = ticketServ.findTicket(ticketId);
+		model.addAttribute("joinedProject", projectServ.isOnProject(user, projectId));
+		model.addAttribute("project", project);
+		model.addAttribute("ticket", ticket);
+		return "ticket-details.jsp";
+	}
+
+	// EDIT TICKET
+	@GetMapping("/fleaflickr/projects/{projectId}/tickets/{ticketId}/edit")
+	public String editTicket(HttpSession session, @PathVariable("projectId") Long projectId, 
+		@PathVariable("ticketId") Long ticketId, Model model) {
+		if (session.getAttribute("user") == null) {
+			return "redirect:/logout";
+		}
+		Ticket ticket = ticketServ.findTicket(ticketId);
+		Project project = projectServ.findProject(projectId);
+		List<User> allUsers = userServ.allUsers();
+		model.addAttribute("allUsers", allUsers);
+		model.addAttribute("project", project);
+		model.addAttribute("ticket", ticket);
+		return "edit-ticket.jsp";
+	}
+
+	// Edit Ticket
+	@PutMapping("/fleaflickr/projects/{projectId}/tickets/{ticketId}/edit")
+	public String editTicket(HttpSession session, @PathVariable("projectId") Long projectId, 
+		@PathVariable("ticketId") Long ticketId, Model model, @Valid @ModelAttribute("ticket") Ticket editedTicket,
+			BindingResult result) {
+		if (result.hasErrors()) {
+			Project project = projectServ.findProject(projectId);
+			List<User> allUsers = userServ.allUsers();
+			model.addAttribute("allUsers", allUsers);
+			model.addAttribute("project", project);
+			model.addAttribute("ticket", editedTicket);
+			return "edit-ticket.jsp";
+		}
+		// User user = (User) session.getAttribute("user");
+		ticketServ.updateTicket(editedTicket);
+		// ticketServ.addUserToTicket(editedTicket.getId(), user.getId());
+		return "redirect:/fleaflickr/projects/{projectId}/tickets";
+	}
+	
 	// DELETE TICKET
 	@GetMapping("/fleaflickr/projects/{projectId}/tickets/{ticketId}/delete")
 	public String deleteTicket(@PathVariable("projectId") Long projectId,
