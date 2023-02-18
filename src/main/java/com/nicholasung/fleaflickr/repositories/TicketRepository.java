@@ -10,7 +10,7 @@ import com.nicholasung.fleaflickr.models.Ticket;
 @Repository
 public interface TicketRepository extends CrudRepository<Ticket, Long> {
 	List<Ticket> findAll();
-//	Ticket findByIdIs(Long id);
+	Ticket findByIdIs(Long id);
 //	List<Ticket> findAllByAssignee(User assignee);
 //	List<Ticket> findAllByPoster(User poster);
 //	List<Ticket> findAllByProject(Project project);
