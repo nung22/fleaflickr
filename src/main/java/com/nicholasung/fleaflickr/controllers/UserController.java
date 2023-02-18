@@ -23,14 +23,24 @@ public class UserController {
 
 	// LOGIN & REGISTRATION
 	@GetMapping("/")
-	public String index(Model model) {
+	public String index() {
+		return "redirect:/fleaflickr";
+	}
+
+	// LOGIN & REGISTRATION
+	@GetMapping("/fleaflickr")
+	public String home(Model model) {
+		return "index.jsp";
+	}
+	
+	// REGISTER
+	@GetMapping("/fleaflickr/signup")
+	public String register(Model model) {
 		// Bind empty User and LoginUser objects to the JSP
 		// to capture the form input
 		model.addAttribute("newUser", new User());
-		model.addAttribute("newLogin", new LoginUser());
-		return "index.jsp";
+		return "signup.jsp";
 	}
-
 	// Registration
 	@PostMapping("/register")
 	public String register(@Valid @ModelAttribute("newUser") User newUser,
@@ -45,7 +55,7 @@ public class UserController {
 			// re-rendering the page.
 			model.addAttribute("newUser", newUser);
 			model.addAttribute("newLogin", new LoginUser());
-			return "index.jsp";
+			return "signup.jsp";
 		}
 
 		// No errors!
@@ -55,6 +65,14 @@ public class UserController {
 		return "redirect:/fleaflickr/projects";
 	}
 
+	// LOGIN 
+	@GetMapping("/fleaflickr/login")
+	public String login(Model model) {
+		// Bind empty User and LoginUser objects to the JSP
+		// to capture the form input
+		model.addAttribute("newLogin", new LoginUser());
+		return "login.jsp";
+	}
 	// Login
 	@PostMapping("/login")
 	public String login(@Valid @ModelAttribute("newLogin") LoginUser newLogin,
@@ -67,7 +85,7 @@ public class UserController {
 		if (result.hasErrors()) {
 			model.addAttribute("newUser", new User());
 			model.addAttribute("newLogin", newLogin);
-			return "index.jsp";
+			return "login.jsp";
 		}
 
 		// No errors!
