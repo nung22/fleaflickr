@@ -29,9 +29,9 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Size(min = 1, max = 100, message="Title must be provided.")
+    @Size(min = 1, max = 100, message="Summary is required.")
     private String title;
-    
+
     @NotEmpty(message="Issue type must be provided.")
     private String issueType;
     
@@ -51,11 +51,11 @@ public class Ticket {
     private Date updatedAt;
 	@PrePersist
     protected void onCreate(){
-        this.createdAt = new Date();
+      this.createdAt = new Date();
     }
     @PreUpdate
     protected void onUpdate(){
-        this.updatedAt = new Date();
+      this.updatedAt = new Date();
     }
     
     // Implement many to one relationship with users
