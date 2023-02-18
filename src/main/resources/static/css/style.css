@@ -6,17 +6,16 @@
 }
 body {
   background-color: #212529;
-
   color: snow;
+  font-family: "Noto Sans", sans-serif;
 }
 /* General Formatting */
 .container {
-    margin: 0 auto;
-    font-family: "Noto Sans", sans-serif;
-    width: 970px;
+  margin: 0 auto;
+  width: 970px;
 }
 .header {
-	display: flex;
+  display: flex;
 	justify-content: space-between;
 	align-items: center;
 }
@@ -24,56 +23,82 @@ body {
   font-size: 1.05rem;
   margin-top: -5px;
 }
+.form-ipt {
+  background-color: #212426;
+  color: snow;
+}
+.form-grp {
+  margin: 1rem 0;
+}
+.form-label {
+  opacity: .6;
+}
+.link {
+  color: #4b92fc
+}
+
+/* Landing Page */
+.sign-up {
+  opacity: .9;
+}
+.landing-page-img {
+  width: 100vw; 
+  height: 85vh;
+  opacity: .6;
+  position: absolute;
+  top:6rem;
+  left:0;
+  z-index: -2;
+}
+.welcome-msg h1{
+  font-size: 3rem;
+}
+.welcome-msg h6 {
+  font-size: 1.2rem;
+}
 
 /* Error Formatting */
 .errors {
 	display: flex;
 	flex-direction: column;
-	justify-content: end;
+	align-items: start;
 }
-.text-danger {
-	font-size: .9rem;
+.error-msg {
+	font-size: .8rem;
+  margin-bottom: .2rem;
 }
 .reg .errors {
-	height: 8rem;
+  height: fit-content;
+  margin-left: .9rem;
 }
 .login .errors {
-	height: 2rem;
+	height: 1rem;
+  margin-left: .2rem;
 }
 .edit-errors, .create-errors {
 	height: 4rem;
 }
 /* Login & Registration */
-.forms {
-	display: flex;
-	justify-content: space-evenly;
+.reg #passwordHelpBlock {
+  font-size: .9rem;
+  margin-left: -.5rem;
 }
-.login-reg {
-    margin-inline: auto;
-    width: 27rem;
-}
-.login-reg h2 {
-	font-size: 2.1rem;
-	margin-top: 2rem;
-}
-.login-reg input {
-    border-radius: 20px;
-    padding-left: 1rem;
-    width: 22rem;
+.login-reg .form-group, .login-reg .submit {
+  width: 18.5rem;
 }
 .login-reg label {
-    font-size: 18px;
-    margin-bottom: -1px;
-    padding-left: 1rem;
+  font-size: 1rem;
+  margin-left: -.6rem;
 }
-.login-reg .btn {
-    border-radius: 20px;
-    padding: 7px;
-    font-size: 14px;
-    margin-inline: auto;
-    width: 22rem;
-    margin-left: -12px;
-    border-width: 2px;
+.login-reg .input {
+  border-color: #383d3f;
+  border-width: 2px;
+}
+.password-visibility {
+  width: 3rem;
+  position: absolute;
+  top: 18.9rem;
+  margin-right: -15.8rem;
 }
 
 /* Dashboard */
@@ -90,13 +115,7 @@ body {
 	max-height: 40rem;
 }
 
-.form-grp {
-	margin: 1rem 0;
-}
-label, .label {
-	color: white;
-	font-size: 18px;
-}
+/* Projects */
 
 
 /* Tickets */
@@ -107,12 +126,32 @@ label, .label {
 	gap: .5rem;
 }
 .issue-type {
-  width: 3rem; 
+  width: 3rem;
   height: 1.7rem; 
   font-size: .9rem;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.status {
+  width: fit-content; 
+  padding: 0 .4rem;
+  height: 1.5rem; 
+  font-size: .8rem;
+  /* font-weight: bold; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dark-btn {
+  background-color: #394650;
+  border-color: #394650;
+}
+
+.dark-btn:hover {
+  background-color:#2e3840; 
+  border-color: #2e3840;
 }
 
 /* Animations */
