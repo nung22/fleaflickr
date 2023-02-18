@@ -33,7 +33,7 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Size(min = 6, max = 100, message="Title must be at least 4 characters.")
+    @Size(min = 4, max = 100, message="Title must be at least 4 characters.")
     private String title;
     
     @Size(min = 3, max = 255, message="Description must be at least 3 characters.")
