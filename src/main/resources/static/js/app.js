@@ -1,45 +1,33 @@
-// Add active
-function addActive(element){
-    element.classList.add("active","text-dark");
+// Add pill
+function addPill(element) {
+
+  element.classList.add("pill");
 }
-// Remove active
-function removeActive(element){
-    element.classList.remove("active","text-dark");
+// Remove pill
+function removePill(element) {
+  element.classList.remove("pill");
 }
 
 // Add pill
-function addPill(element){
-	
-    element.classList.add("pill");
+function addUserInfoPill(element) {
+
+  element.classList.add("user-info-pill");
 }
 // Remove pill
-function removePill(element){
-    element.classList.remove("pill");
+function removeUserInfoPill(element) {
+  element.classList.remove("user-info-pill");
 }
 
-// Add pill
-function addUserInfoPill(element){
-	
-    element.classList.add("user-info-pill");
-}
-// Remove pill
-function removeUserInfoPill(element){
-    element.classList.remove("user-info-pill");
+// Reveal password
+function revealPassword(element) {
+  element.classList.add("invisible")
+  document.getElementById("password-visible").classList.remove("invisible")
+  document.getElementById("pw").setAttribute("type","text")
 }
 
-function displayConfirmation(){
-    document.querySelector(".logout-popup").classList.remove("visually-hidden");
-}
-
-function hideConfirmation(){
-    document.querySelector(".logout-popup").classList.add("visually-hidden");
-}
-
-function addUnderline(element){
-    element.classList.add("text-decoration-underline");
-}
-
-// Remove active
-function removeUnderline(element){
-    element.classList.remove("text-decoration-underline");
+// Hide pasword
+function hidePassword(element) {
+  element.classList.add("invisible")
+  document.getElementById("password-hidden").classList.remove("invisible")
+  document.getElementById("pw").setAttribute("type","password")
 }
