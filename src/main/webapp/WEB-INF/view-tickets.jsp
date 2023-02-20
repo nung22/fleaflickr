@@ -133,22 +133,15 @@
 						<th class="ps-3" scope="col">Type</th>
 						<th scope="col">Key</th>
 						<th scope="col">Summary</th>
+						<th scope="col">Priority</th>
 						<th scope="col">Status</th>
 						<th scope="col">Assignee</th>
-						<th scope="col">Reporter</th>
 					</tr>
 				</thead>
 				<tbody style="font-size: .9rem;">
 				<c:forEach var="oneTicket" items="${tickets}" varStatus="status">
 					<c:set var="reverseIndex" value="${tickets.size() - status.index - 1}" />
 					<tr style="line-height: 2.3rem;" class="align-middle">
-						<!-- <span class="">
-							Added by <c:out value="${oneTicket.poster.firstName}"></c:out> 
-							at <fmt:formatDate value="${oneTicket.getCreatedAt()}" pattern="h:mm aa 'on' MMM d, yyyy"/>	
-						</span>
-						<c:if test="${oneTicket.poster.id == user.id || user.id == project.leader.id}">
-							<a class="btn-close close-ticket" href="/fleaflickr/projects/${project.id}/tickets/${oneTicket.id}/delete"></a>
-						</c:if> -->
 						<td class="ps-3">
 							<c:if test="${tickets[reverseIndex].issueType == 'Bug'}">
 								<div class="tool-tip rounded text-center issue-type" style="background-color: #aa372c;">
@@ -183,7 +176,24 @@
 							<c:out value="${tickets[reverseIndex].title}"></c:out>
 						</a>
 						</td>
-						<td class="ps-2">
+						<td class="px-4">
+							<c:if test="${tickets[reverseIndex].priority == 'Highest'}">
+								<img src="/assets/icons/highest.png" width="20" alt="highest priority">
+							</c:if>
+							<c:if test="${tickets[reverseIndex].priority == 'High'}">
+								<img src="/assets/icons/high.png" width="20" alt="high priority">
+							</c:if>
+							<c:if test="${tickets[reverseIndex].priority == 'Medium'}">
+								<img src="/assets/icons/medium.png" width="20" alt="medium priority">
+							</c:if>
+							<c:if test="${tickets[reverseIndex].priority == 'Low'}">
+								<img src="/assets/icons/low.png" width="20" alt="low priority">
+							</c:if>
+							<c:if test="${tickets[reverseIndex].priority == 'Lowest'}">
+								<img src="/assets/icons/lowest.png" width="20" alt="lowest priority">
+							</c:if>
+						</td>
+						<td>
 							<c:if test="${tickets[reverseIndex].status == 'To Do'}">
 								<div class="tool-tip rounded text-center status" style="background-color: #6565657a;">
 									<span>TO DO</span>
@@ -210,7 +220,7 @@
 							</c:if>
 						</td>
 						<td class="ps-2"><c:out value="${tickets[reverseIndex].assignee.firstName} ${tickets[reverseIndex].assignee.lastName.charAt(0)}"></c:out>.</td>
-						<td class="ps-2"><c:out value="${tickets[reverseIndex].poster.firstName} ${tickets[reverseIndex].poster.lastName.charAt(0)}"></c:out>.</td>
+						<!-- <td class="ps-2"><c:out value="${tickets[reverseIndex].poster.firstName} ${tickets[reverseIndex].poster.lastName.charAt(0)}"></c:out>.</td> -->
 					</tr>
 				</c:forEach>
 				</tbody>
