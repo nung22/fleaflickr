@@ -6,35 +6,38 @@
       <img src="/assets/icons/bug.png" alt="Logo" width="35" height="35">
       <span class="h4 pt-2" style=" font-weight:bolder">FleaFlickr</span>
     </a>
-    <c:if test="${param.initials.length() == 2}">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mt-1 mb-lg-0">
-            <li class="nav-item dropdown">
-              <a onmouseover="addPill(this)" onmouseout="removePill(this)"
-              class="me-2 rounded text-light nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Projects
-              </a>
-              <ul class="dropdown-menu dropdown-menu-dark shadow" style="background-color: #3384ff;">
-                <li><a onmouseover="addPill(this)" onmouseout="removePill(this)"
-                  class="me-2 rounded text-light dropdown-item" href="#">Project Hub</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a onmouseover="addPill(this)" onmouseout="removePill(this)"
-                  class="me-2 rounded text-light dropdown-item" href="/fleaflickr/projects">Your Projects</a></li>
-              </ul>
-            </li>
-          </ul>
-          <div class="d-flex align-items-center justify-content-center ms-4"
-          style="border-radius: 50%; width: 3.3rem; height:3.3rem" onmouseover="addPill(this)" onmouseout="removePill(this)">
-            <button type="button" class="text-light text-center d-flex align-items-center justify-content-center btn" style="background-color: rgb(59, 59, 203); border-radius: 50%; width:2.3rem; height:2.3rem"
-            data-bs-toggle="collapse" data-bs-target="#userSettings" aria-expanded="false" aria-controls="userSettings">
-              <span>${param.initials} </span>
-            </button>
-          </div>
+    <c:choose>
+      <c:when test="${user != null}">
+        <ul class="navbar-nav me-auto mt-1 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a onmouseover="addPill(this)" onmouseout="removePill(this)"
+            class="me-2 rounded text-light nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Projects
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark shadow" style="background-color: #3384ff;">
+              <li><a onmouseover="addPill(this)" onmouseout="removePill(this)"
+                class="me-2 rounded text-light dropdown-item" href="/fleaflickr/projects/available">Project Hub</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a onmouseover="addPill(this)" onmouseout="removePill(this)"
+                class="me-2 rounded text-light dropdown-item" href="/fleaflickr/projects">Your Projects</a></li>
+            </ul>
+          </li>
+        </ul>
+        <div class="d-flex align-items-center justify-content-center ms-4"
+        style="border-radius: 50%; width: 3.3rem; height:3.3rem" onmouseover="addPill(this)" onmouseout="removePill(this)">
+          <button type="button" class="text-light text-center d-flex align-items-center justify-content-center btn" style="background-color: rgb(59, 59, 203); border-radius: 50%; width:2.3rem; height:2.3rem"
+          data-bs-toggle="collapse" data-bs-target="#userSettings" aria-expanded="false" aria-controls="userSettings">
+            <span style="margin-right: -.1rem;">${param.initials}</span>
+          </button>
         </div>
-    </c:if>
+      </c:when>
+      <c:otherwise>
+        <div class="d-flex gap-3">
+          <a class="btn btn-warning sign-up" href="/fleaflickr/signup">Sign up</a>
+          <a class="btn btn-primary fw-bold" href="/fleaflickr/login">Log in</a>
+        </div>
+      </c:otherwise>
+    </c:choose>
   </div>
 </nav>
 <div>
@@ -42,8 +45,8 @@
     <div class="card card-body text-light shadow-lg d-flex flex-column gap-1" style="width: 300px; background-color: #3384ff;">
       <h6 class="fw-bold">ACCOUNT</h6>
       <div class="d-flex gap-3">
-        <div class="text-light text-center d-flex align-items-center justify-content-center" style="background-color: rgb(36, 36, 181); border-radius: 50%; width:2.3rem; height:2.3rem">
-          <span>${param.initials} </span>
+        <div class="text-light text-center d-flex align-items-center justify-content-center" style="background-color: rgb(59, 59, 203); border-radius: 50%; width:2.3rem; height:2.3rem">
+          <span style="margin-right: -.1rem;">${param.initials}</span>
         </div>
         <div>
           <h6>${param.fullName}</h6>
