@@ -28,63 +28,88 @@
       <h2>Projects</h2>
       <a class="btn btn-primary" href="/fleaflickr/projects/new">+ Create Project</a>
     </div>
-    <div class="table-holder rounded">
-      <table class="table table-dark table-hover">
-        <thead>
-          <tr style="line-height: 2.3rem; opacity: .5;" class="fs-5">
-            <th class="ps-5">Name</th>
-            <th>Key</th>
-            <th>Due Date</th>
-            <th>Lead</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <c:forEach var="oneProject" items="${projectsOnTeam}">
-            <tr style="line-height: 2.7rem;" class="align-middle">
-              <td class="ps-5">
-                <a
-                  class="text-decoration-none" style="color: #4b92fc"
-                  href="<c:url value='/fleaflickr/projects/${oneProject.id}'/>"
-                onmouseover="this.classList.add('text-decoration-underline')" onmouseout="this.classList.remove('text-decoration-underline')">
-                  <c:out value="${oneProject.title}"
-                /></a>
-              </td>
-              <td>
-                <c:out value="${oneProject.title.substring(0,4).toUpperCase()}" />
-              </td>
-              <td>
-                <fmt:formatDate
-                value="${oneProject.dueDate}"
-                pattern="MMMM d, yyyy"
-                />
-              </td>
-              <td class="d-flex flex-row gap-2 align-items-center">
-                <div class="text-light text-center d-flex align-items-center justify-content-center me-1" style="background-color: rgb(59, 59, 203); border-radius: 50%; width:2.1rem; height:2.1rem; font-size: 1rem;">
-                  <span><c:out value="${user.firstName.charAt(0)}${user.lastName.charAt(0)}"/></span>
-                </div>
-                <c:out value="${oneProject.leader.firstName} ${oneProject.leader.lastName}" />
-              </td>
-              <td>
-                <c:choose>
-                  <c:when
-                    test="${oneProject.leader.id == user.id}">
-                    <a class="rounded btn" style="padding: .3rem .5rem .5rem .5rem;" id="projectIcon"
-                      onmouseover="this.classList.add('bg-dark')" onmouseout="this.classList.remove('bg-dark')">
-                      <img src="/assets/icons/gear.png" width="18" alt="gear">
-                    </a>           
-                  </c:when>
-                  <c:otherwise>
-                    <a class="text-decoration-none text-danger" href="<c:url value='/leave/${user.id}/${oneProject.id}'/>" on>
-                    Leave Team</a>
-                  </c:otherwise>
-                </c:choose>
-              </td>
+    <c:choose>
+    <c:when test="${projectsOnTeam.size() > 0}">
+      <div class="table-holder">
+        <table class="table table-dark table-hover">
+          <thead>
+            <tr style="line-height: 2.3rem; color: #909294;" class="fs-5">
+              <th class="ps-5">Name</th>
+              <th>Key</th>
+              <th>Due Date</th>
+              <th>Lead</th>
+              <th class="text-center">Action</th>
             </tr>
-          </c:forEach>
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+            <c:forEach var="oneProject" items="${projectsOnTeam}">
+              <tr style="line-height: 2.7rem;" class="align-middle">
+                <td class="ps-5">
+                  <a class="text-decoration-none link" href="/fleaflickr/projects/${oneProject.id}/tickets"
+                  onmouseover="this.classList.add('text-decoration-underline')"
+                  onmouseout="this.classList.remove('text-decoration-underline')">
+                    <c:out value="${oneProject.title}"
+                  /></a>
+                </td>
+                <td>
+                  <c:out value="${oneProject.title.substring(0,4).toUpperCase()}" />
+                </td>
+                <td>
+                  <fmt:formatDate
+                  value="${oneProject.dueDate}"
+                  pattern="MMMM d, yyyy"
+                  />
+                </td>
+                <td class="d-flex flex-row gap-2 align-items-center">
+                  <div class="text-light text-center d-flex align-items-center justify-content-center me-1" style="background-color: rgb(59, 59, 203); border-radius: 50%; width:2.1rem; height:2.1rem; font-size: 1rem;">
+                    <span><c:out value="${oneProject.leader.firstName.charAt(0)}${oneProject.leader.lastName.charAt(0)}"/></span>
+                  </div>
+                  <c:out value="${oneProject.leader.firstName} ${oneProject.leader.lastName}" />
+                </td>
+                <td class="text-center">
+                  <c:choose>
+                    <c:when
+                      test="${oneProject.leader.id == user.id}">
+                      <a class="rounded btn" style="padding: .3rem .5rem .5rem .5rem;" id="projectIcon"
+                      href="/fleaflickr/projects/edit/${oneProject.id}"
+                      onmouseover="this.classList.add('bg-dark')"
+                      onclick="this.classList.remove('bg-dark')"
+                      onmouseout="this.classList.remove('bg-dark')">
+                        <img src="/assets/icons/gear.png" width="18" alt="gear">
+                      </a>
+                    </c:when>
+                    <c:otherwise>
+                      <a class="btn rounded" style="padding: .3rem;" id="projectIcon"
+                      href="/leave/${user.id}/${oneProject.id}"
+                      onmouseover="this.classList.add('bg-danger')"
+                      onclick="this.classList.remove('bg-danger')"
+                      onmouseout="this.classList.remove('bg-danger')">
+                        <img src="/assets/icons/exit.png" width="24" alt="gear">
+                      </a>
+                    </c:otherwise>
+                  </c:choose>
+                </td>
+              </tr>
+            </c:forEach>
+          </tbody>
+        </table>
+      </div>
+    </c:when>
+    <c:otherwise>
+      <div class="text-center h4 text-secondary pt-5">
+        <p>It looks like you don't have any projects yet.</p>
+        <p>Try to join an 
+          <a class="link text-decoration-none" href="/fleaflickr/projects/available" onmouseover="this.classList.add('text-decoration-underline')" 
+          onmouseout="this.classList.remove('text-decoration-underline')"
+          onclick="this.classList.remove('text-decoration-underline')">existing one</a> 
+          or 
+          <a class="link text-decoration-none" href="/fleaflickr/projects/new" onmouseover="this.classList.add('text-decoration-underline')" 
+          onmouseout="this.classList.remove('text-decoration-underline')"
+          onclick="this.classList.remove('text-decoration-underline')">create your own</a>!
+        </p>
+      </div>
+    </c:otherwise>
+    </c:choose>
   </div>
   <script type="text/javascript" src="/js/app.js"></script>
   <script src="/webjars/jquery/jquery.min.js"></script>
@@ -92,5 +117,3 @@
 </body>
 <jsp:include page="./components/loader-animation.jsp"/>
 </html>
-
-<!-- href="<c:url value='/fleaflickr/projects/edit/${oneProject.getId()}'/>" -->
