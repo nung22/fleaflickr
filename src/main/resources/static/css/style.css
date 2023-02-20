@@ -109,10 +109,8 @@ body {
   align-items: end;
 }
 .table-holder {
-  background-color: #212529;
 	overflow: auto;
-  /* padding: 2rem; */
-	max-height: 40rem;
+	max-height: 32rem;
 }
 
 /* Projects */
