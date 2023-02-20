@@ -66,10 +66,45 @@
 						</div>
             <div class="form-grp">
               <div class="form-label">Description</div>
-              <div class="form-control form-ipt border-0" style="height: 7.5rem;">
+              <div class="form-control form-ipt border-0" style="height: 8.5rem;">
                 <c:out value="${ticket.description}"/>
               </div>
             </div>
+					</div>
+					<div style="width:9rem">
+            <div class="form-grp">
+              <div class="form-label">Issue type</div>
+              <div class="form-control form-ipt border-0" style="height:2.2rem;">
+                <c:out value="${ticket.issueType}"/>
+              </div>
+            </div>
+            <div class="form-grp">
+              <div class="form-label">Status</div>
+              <div class="form-control form-ipt border-0" style="height:2.2rem;">
+                <c:out value="${ticket.status}"/>
+              </div>
+            </div>
+            <div class="form-grp">
+              <div class="form-label">Priority</div>
+              <div class="form-control form-ipt border-0" style="height:2.2rem;">
+                <c:out value="${ticket.priority}"/>
+              </div>
+            </div>
+            <div class="form-grp">
+              <div class="form-label">Resolved</div>
+              <div class="form-control form-ipt border-0" style="height:2.2rem;">
+                <c:choose>
+                <c:when test="${ticket.status == 'Done'}">
+                  Yes
+                </c:when>
+                <c:otherwise>
+                  No
+                </c:otherwise>
+                </c:choose>
+              </div>
+            </div>
+					</div>
+					<div style="width:10.3rem">
             <div class="form-grp">
               <div class="form-label">Created</div>
               <div class="form-control form-ipt border-0">
@@ -88,24 +123,16 @@
                 />
               </div>
             </div>
-					</div>
-					<div style="width:24rem">
-            <div class="form-grp">
-              <div class="form-label">Status</div>
-              <div class="form-control form-ipt border-0" id="key" style="height:2.2rem;">
-                <c:out value="${ticket.status}"/>
-              </div>
-            </div>
             <div class="form-grp">
               <div class="form-label">Assignee</div>
               <div class="form-control form-ipt border-0">
-                <c:out value="${ticket.assignee.firstName} ${ticket.assignee.lastName}"/>
+                <c:out value="${ticket.assignee.firstName} ${ticket.assignee.lastName.charAt(0)}"/>.
               </div>
             </div>
             <div class="form-grp">
               <div class="form-label">Reporter</div>
               <div class="form-control form-ipt border-0">
-                <c:out value="${ticket.poster.firstName} ${ticket.poster.lastName}"/>
+                <c:out value="${ticket.poster.firstName} ${ticket.poster.lastName.charAt(0)}"/>.
               </div>
             </div>
 					</div>
