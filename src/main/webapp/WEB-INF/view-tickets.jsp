@@ -40,7 +40,7 @@
 			</ol>
 		</nav>
 		<div class="header mb-3">
-			<h2 class="fw-bold text-warning">Tickets</h2>
+			<h2 class="fw-bold">Tickets</h2>
 			<div class="d-flex gap-2">
 				<a class="btn btn-dark dark-btn" href="/fleaflickr/projects/${project.id}">Project Details</a>
 				<!-- Button trigger modal -->
@@ -129,7 +129,7 @@
     <div class="table-holder rounded">
 			<table class="table table-dark table-hover">
 				<thead class="m-10 table-header">
-					<tr style="line-height: 2.3rem; color: #909294;" class="fs-5">
+					<tr style="line-height: 2.3rem; color: #909294;" class="fs-6">
 						<th class="ps-3" scope="col">Type</th>
 						<th scope="col">Key</th>
 						<th scope="col">Summary</th>
@@ -138,7 +138,7 @@
 						<th scope="col">Reporter</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody style="font-size: .9rem;">
 				<c:forEach var="oneTicket" items="${tickets}" varStatus="status">
 					<c:set var="reverseIndex" value="${tickets.size() - status.index - 1}" />
 					<tr style="line-height: 2.3rem;" class="align-middle">
@@ -178,7 +178,7 @@
 						<td class="ps-2"><c:out value="${tickets[reverseIndex].project.title.substring(0,4).toUpperCase()}-${tickets[reverseIndex].id}"></c:out></td>
 						<td class="ps-2">
 							<a class="text-decoration-none" style="color: #4b92fc"
-							href="<c:url value='/fleaflickr/projects/${project.id}/tickets/${tickets[reverseIndex].id}/edit'/>"
+							href="<c:url value='/fleaflickr/projects/${project.id}/tickets/${tickets[reverseIndex].id}'/>"
 							onmouseover="this.classList.add('text-decoration-underline')" onmouseout="this.classList.remove('text-decoration-underline')">
 							<c:out value="${tickets[reverseIndex].title}"></c:out>
 						</a>
