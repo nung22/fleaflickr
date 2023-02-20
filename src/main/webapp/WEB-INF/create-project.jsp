@@ -17,14 +17,9 @@
 	<title>Create Project</title>
 </head>
 <body>
-	<jsp:include page="./components/navbar.jsp">
-    <jsp:param name="initials" value="${user.firstName.charAt(0)}${user.lastName.charAt(0)}"/>
-    <jsp:param name="fullName" value="${user.firstName} ${user.lastName}"/>
-    <jsp:param name="email" value="${user.email}"/>
-    <jsp:param name="id" value="${user.id}"/>
-	</jsp:include> 
-	<div class="container d-flex justify-content-center">
-		<div class="px-5 pt-5 pb-2 rounded shadow" style="width:970px; background-color: #282c34;">
+	<div class="loader"></div>
+	<div class="container d-flex justify-content-center pt-5">
+		<div class="px-5 pt-5 pb-2 rounded shadow mt-5" style="width:970px; background-color: #282c34;">
 			<div class="mb-4">
 				<h1 class="text-light" aria-describedby="createProjectHelpBlock">Add project details</h1>
 				<div id="createProjectHelpBlock" class="form-text text-light fw-light fs-6" style="opacity: .6;">
@@ -55,7 +50,7 @@
 					</div>
 					<div style="width:24rem">
 						<div class="form-grp">
-							<form:label class="form-label" path="description">Project Description</form:label>
+							<form:label class="form-label" path="description">Description</form:label>
 							<form:textarea class="form-control" style="background-color:#212426; color: snow;" path="description" rows="3" required="true"/>
 						</div>
 						<div class="form-grp">
