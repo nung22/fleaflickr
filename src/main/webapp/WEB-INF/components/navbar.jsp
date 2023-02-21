@@ -12,7 +12,7 @@
           <li class="nav-item dropdown">
             <a onmouseover="addPill(this)" onmouseout="removePill(this)"
             class="me-2 rounded text-light nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Projects
+              Work
             </a>
             <ul class="dropdown-menu dropdown-menu-dark shadow" style="background-color: #3384ff;">
               <li><a onmouseover="addPill(this)" onmouseout="removePill(this)"
@@ -54,8 +54,8 @@
         </div>
       </div>
       <div class="d-flex flex-column gap-1 py-1" style="border: 2px solid snow; border-left-width: 0; border-right-width: 0;">
-        <a class="btn text-light" href="#" onmouseover="addUserInfoPill(this)" onmouseout="removeUserInfoPill(this)">Profile</a>
-        <a class="btn text-light" href="#" onmouseover="addUserInfoPill(this)" onmouseout="removeUserInfoPill(this)">Personal Settings</a>
+        <a class="btn text-light" href="/fleaflickr/profile" onmouseover="addUserInfoPill(this)" onmouseout="removeUserInfoPill(this)">Profile</a>
+        <!-- <a class="btn text-light" href="#" onmouseover="addUserInfoPill(this)" onmouseout="removeUserInfoPill(this)">Personal Settings</a> -->
       </div>
       <a class="btn text-light" href="/fleaflickr/logout-page" onmouseover="addUserInfoPill(this)" onmouseout="removeUserInfoPill(this)">Logout</a>
     </div>
