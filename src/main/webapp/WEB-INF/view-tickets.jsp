@@ -44,9 +44,11 @@
 			<div class="d-flex gap-2">
 				<a class="btn btn-dark dark-btn" href="/fleaflickr/projects/${project.id}">Project Details</a>
 				<!-- Button trigger modal -->
-				<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-					+ Create Ticket
-				</button>
+				<c:if test="${user != null}">
+					<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+						+ Create Ticket
+					</button>
+				</c:if>
 			</div>
 		</div>
 
