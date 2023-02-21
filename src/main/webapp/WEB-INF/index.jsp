@@ -30,7 +30,7 @@
       <h6 class="text-light my-4" style="opacity: .5;">
         An agile issue tracker and project management tool for teams of all sizes.
       </h6>
-      <a class="btn btn-primary my-3" href="">View Projects</a>
+      <a class="btn btn-primary my-3" href="/fleaflickr/all-projects">View Projects</a>
     </div>
   </div>
   <script type="text/javascript" src="/js/app.js"></script>
