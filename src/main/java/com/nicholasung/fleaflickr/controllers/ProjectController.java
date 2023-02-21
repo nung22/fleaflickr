@@ -34,8 +34,13 @@ public class ProjectController {
 	@Autowired
 	private TicketService ticketServ;
 
-	// LANDING PAGE
-	
+	// PUBLIC PROJECTS DASHBOARD
+	@GetMapping("/fleaflickr/all-projects")
+	public String allProjects(HttpSession session, Model model) {
+		List<Project> projects = projectServ.allProjects();
+		model.addAttribute("projects", projects);
+		return "view-projects-public.jsp";
+	}
 
 	// USER DASHBOARD
 	@GetMapping("/fleaflickr/projects")
@@ -81,11 +86,11 @@ public class ProjectController {
 
 	// SHOW PROJECT INFO
 	@GetMapping("/fleaflickr/projects/{id}")
-	public String show(HttpSession session, @PathVariable("id") Long id,
+	public String showProject(HttpSession session, @PathVariable("id") Long id,
 			Model model) {
-		if (session.getAttribute("user") == null) {
-			return "redirect:/logout";
-		}
+		// if (session.getAttribute("user") == null) {
+		// 	return "redirect:/logout";
+		// }
 		User user = (User) session.getAttribute("user");
 		model.addAttribute("joinedProject", projectServ.isOnProject(user, id));
 		Project project = projectServ.findProject(id);
@@ -156,9 +161,9 @@ public class ProjectController {
 	public String addTicket(HttpSession session, Model model,
 	@PathVariable("id") Long id,
 			@ModelAttribute("ticket") Ticket emptyTicket) {
-		if (session.getAttribute("user") == null) {
-			return "redirect:/logout";
-		}
+		// if (session.getAttribute("user") == null) {
+		// 	return "redirect:/logout";
+		// }
 		Project project = projectServ.findProject(id);
 		List<Ticket> tickets = ticketServ.allProjectTickets(id);
 		List<User> allUsers = userServ.allUsers();
@@ -185,11 +190,11 @@ public class ProjectController {
 
 	// SHOW TICKET INFO
 	@GetMapping("/fleaflickr/projects/{projectId}/tickets/{ticketId}")
-	public String show(HttpSession session, @PathVariable("projectId") Long projectId,
+	public String showTicket(HttpSession session, @PathVariable("projectId") Long projectId,
 	@PathVariable("ticketId") Long ticketId, Model model) {
-		if (session.getAttribute("user") == null) {
-			return "redirect:/logout";
-		}
+		// if (session.getAttribute("user") == null) {
+		// 	return "redirect:/logout";
+		// }
 		User user = (User) session.getAttribute("user");
 		Project project = projectServ.findProject(projectId);
 		Ticket ticket = ticketServ.findTicket(ticketId);
