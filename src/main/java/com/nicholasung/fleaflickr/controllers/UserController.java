@@ -95,6 +95,15 @@ public class UserController {
 		return "redirect:/fleaflickr/projects";
 	}
 
+	// VIEW USER DETAILS
+	@GetMapping("/fleaflickr/profile")
+	public String showProfile(HttpSession session) {
+		if (session.getAttribute("user") == null) {
+			return "redirect:/logout";
+		}
+		return "profile-details.jsp";
+	}
+
 	// LOGOUT
 	@GetMapping("/fleaflickr/logout-page")
 	public String home(HttpSession session, Model model) {
