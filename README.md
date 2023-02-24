@@ -6,14 +6,14 @@
     <a href="https://www.loom.com/share/25f66c1a8d5845eabe4bb5e322d4efb1" alt="Video Demo">Video Demo</a>
 </p>
 
-[![Video Tour](/Screenshots/HomePage.png?raw=true)](https://www.loom.com/share/25f66c1a8d5845eabe4bb5e322d4efb1)
+<a href="https://www.loom.com/share/25f66c1a8d5845eabe4bb5e322d4efb1" alt="Video Demo"><img src="./screenshots/HomePage.png?raw=true" alt="Home Page"></a>
+
 
 ### _An Issue Tracking System (ITS)_
 
 ---
 
 ## Table of Contents
-
 - [Table of Contents](#table-of-contents)
 - [Background](#background)
 - [Features](#features)
@@ -60,7 +60,7 @@ I have had experience using issue-tracking systems (ITS) such as Jira in the pas
 
   <img src="./screenshots/NoUserProjects.png?raw=true" alt="No User Projects" width="300">
   <img src="./screenshots/UserProjectsLead.png?raw=true" alt="User Projects Leading" width="300">
-  <img src="./screenshots/UserProjectsNoLead.png?raw=true" alt="User Projects Joined" width="300">
+  <img src="./screenshots/UserProjectsNotLead.png?raw=true" alt="User Projects Joined" width="300">
 
 - Create, Read, Update or Delete a Project
 
