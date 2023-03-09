@@ -3,6 +3,10 @@
 </h1>
 
 <p align="center">
+    <a href="http://52.13.10.236/fleaflickr" alt="Live Demo">Live Demo</a>
+</p>
+
+<p align="center">
     <a href="https://www.loom.com/share/25f66c1a8d5845eabe4bb5e322d4efb1" alt="Video Demo">Video Demo</a>
 </p>
 
