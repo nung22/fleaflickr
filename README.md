@@ -7,6 +7,10 @@
     <a href="https://www.loom.com/share/25f66c1a8d5845eabe4bb5e322d4efb1" alt="Video Demo">Video Demo</a>
 </p>
 
+<p align="center">
+  <em>Disclaimer: Not all live links may be working at the moment, feel free to reach out to me if that's the case!</em>
+</p>
+
 <a href="https://www.loom.com/share/25f66c1a8d5845eabe4bb5e322d4efb1" alt="Video Demo"><img src="./screenshots/HomePage.png?raw=true" alt="Home Page"></a>
 
 
